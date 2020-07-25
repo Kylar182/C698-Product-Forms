@@ -5,8 +5,89 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:C698_Product_WPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="MainWindow" MinHeight="1080" Width="1920">
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="4*" />
+      <ColumnDefinition Width="*" />
+      <ColumnDefinition Width="3*" />
+      <ColumnDefinition Width=".5*" />
+      <ColumnDefinition Width="4*" />
+      <ColumnDefinition Width="*" />
+      <ColumnDefinition Width="3*" />
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="1*" />
+      <RowDefinition Height="1.5*" />
+      <RowDefinition Height="4*" />
+      <RowDefinition Height="1*" />
+      <RowDefinition Height="1*" />
+    </Grid.RowDefinitions>
+    <Label Content="Inventory Management System" 
+           HorizontalAlignment="Left"
+           FontSize="30" Margin="30, 10, 0, 0" FontWeight="SemiBold"/>
 
+    <Label Grid.Row="1" Content="Parts" 
+           HorizontalAlignment="Left" VerticalAlignment="Bottom"
+           FontSize="30" Margin="30, 10" FontWeight="SemiBold"/>
+
+    <Button Grid.Column="1" Grid.Row="1" Content="Search" 
+            VerticalAlignment="Center" HorizontalAlignment="Center"
+            FontSize="20" Padding="10" BorderThickness="2.5" 
+            BorderBrush="#868E96">
+      <Button.Resources>
+        <Style TargetType="Border">
+          <Setter Property="CornerRadius" Value="7.5"/>
+        </Style>
+      </Button.Resources>
+    </Button>
+
+      <TextBox Grid.Column="2" Grid.Row="1" VerticalAlignment="Center"
+             HorizontalAlignment="Stretch" Margin="30" FontSize="40" 
+             BorderBrush="#868E96" BorderThickness="0, 0, 0 , 2.5" 
+             Background="#30868E96"/>
+
+    <Label Grid.Row="1" Grid.Column="4" Content="Products" 
+           HorizontalAlignment="Left" VerticalAlignment="Bottom"
+           FontSize="30" Margin="30, 10" FontWeight="SemiBold"/>
+
+    <Button Grid.Row="1" Grid.Column="5" Content="Search" 
+            VerticalAlignment="Center" HorizontalAlignment="Center"
+            FontSize="20" Padding="10" BorderThickness="2.5" 
+            BorderBrush="#868E96" >
+      <Button.Resources>
+        <Style TargetType="Border">
+          <Setter Property="CornerRadius" Value="7.5"/>
+        </Style>
+      </Button.Resources>
+    </Button>
+
+    <TextBox Grid.Row="1" Grid.Column="6" VerticalAlignment="Center"
+             HorizontalAlignment="Stretch" Margin="30" FontSize="40" 
+             BorderBrush="#868E96" BorderThickness="0, 0, 0 , 2.5" 
+             Background="#30868E96"/>
+
+    <Grid Grid.Row="2" Grid.ColumnSpan="3" >
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width=".5*"/>
+        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="*"/>
+      </Grid.ColumnDefinitions>
+      <Grid.RowDefinitions>
+        <RowDefinition Height=".5*"/>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="2*"/>
+      </Grid.RowDefinitions>
+      
+      
     </Grid>
+    
+  </Grid>
 </Window>
