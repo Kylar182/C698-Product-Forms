@@ -5,7 +5,7 @@ namespace C698_Product_WPF.Persistence
 {
   public class InventoryDBContext : DbContext
   {
-    public InventoryDBContext(DbContextOptions<InventoryDBContext> options) : base(options) 
+    public InventoryDBContext(DbContextOptions<InventoryDBContext> options) : base(options)
     {
       Database.EnsureCreated();
     }
@@ -20,6 +20,7 @@ namespace C698_Product_WPF.Persistence
     {
       builder.Entity<Product>().HasData(GetProducts());
       builder.Entity<Part>().HasData(GetParts());
+      builder.Entity<PartProduct>().HasKey(pp => new { pp.PartId, pp.ProductId });
       base.OnModelCreating(builder);
     }
 

@@ -63,25 +63,29 @@
     <TextBox Grid.Row="1" Grid.Column="6" VerticalAlignment="Center"
              HorizontalAlignment="Stretch" Margin="30" />
 
-    <Grid Grid.Row="2" Grid.ColumnSpan="3" >
-      <Grid.ColumnDefinitions>
-        <ColumnDefinition Width=".5*"/>
-        <ColumnDefinition Width="*"/>
-        <ColumnDefinition Width="*"/>
-        <ColumnDefinition Width="*"/>
-        <ColumnDefinition Width="*"/>
-        <ColumnDefinition Width="*"/>
-        <ColumnDefinition Width="*"/>
-      </Grid.ColumnDefinitions>
-      <Grid.RowDefinitions>
-        <RowDefinition Height=".5*"/>
-        <RowDefinition Height="*"/>
-        <RowDefinition Height="*"/>
-        <RowDefinition Height="*"/>
-        <RowDefinition Height="*"/>
-        <RowDefinition Height="2*"/>
-      </Grid.RowDefinitions>
-    </Grid>
-    
+    <DataGrid Grid.Row="2" Grid.ColumnSpan="3" Margin="30, 0, 0, 0" AutoGenerateColumns="False" 
+              Name="PartsGrid" IsReadOnly="True">
+      <DataGrid.Columns>
+        <DataGridTextColumn Header="Part ID" Width="*" Binding="{Binding Id}" />
+        <DataGridTextColumn Header="Name" Width="*" Binding="{Binding Name}" />
+        <DataGridTextColumn Header="Inventory" Width="*" Binding="{Binding InStock}" />
+        <DataGridTextColumn Header="Price" Width="*" Binding="{Binding Price}" />
+        <DataGridTextColumn Header="Min" Width="*" Binding="{Binding Min}" />
+        <DataGridTextColumn Header="Max" Width="*" Binding="{Binding Max}" />
+      </DataGrid.Columns>
+    </DataGrid>
+
+    <DataGrid Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="3" Margin="0, 0, 30, 0" AutoGenerateColumns="False"
+               Name="ProductsGrid" IsReadOnly="True">
+      <DataGrid.Columns>
+        <DataGridTextColumn Header="Product ID" Width="*" Binding="{Binding Id}" />
+        <DataGridTextColumn Header="Name" Width="*" Binding="{Binding Name}" />
+        <DataGridTextColumn Header="Inventory" Width="*" Binding="{Binding InStock}" />
+        <DataGridTextColumn Header="Price" Width="*" Binding="{Binding Price}" />
+        <DataGridTextColumn Header="Min" Width="*" Binding="{Binding Min}" />
+        <DataGridTextColumn Header="Max" Width="*" Binding="{Binding Max}" />
+      </DataGrid.Columns>
+    </DataGrid>
+
   </Grid>
 </Window>

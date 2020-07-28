@@ -19,6 +19,9 @@
       <Setter Property="BorderBrush" Value="{StaticResource AppGrey}" />
     </Style>
 
+    <Style TargetType="DataGridColumnHeader">
+      <Setter Property="FontSize" Value="20" />
+    </Style>
 
   </Application.Resources>
 </Application>
