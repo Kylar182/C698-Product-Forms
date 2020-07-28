@@ -1,4 +1,4 @@
-src/.vs/*
+.vs/*
 src/.idea/*
 src/.vscode/*
 [b]in
