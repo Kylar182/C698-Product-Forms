@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace C698_Product_WPF.EntityModels
 {
-  public abstract class Product : Base
+  public class Product : Base
   {
     [Range(0.00, 99999999999.99)]
     public decimal Price { get; set; }
@@ -13,6 +13,6 @@ namespace C698_Product_WPF.EntityModels
     public int Min { get; set; }
     public int Max { get; set; }
 
-    public List<Part> Parts { get; set; }
+    public List<PartProduct> Parts { get; set; }
   }
 }
