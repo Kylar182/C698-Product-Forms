@@ -13,14 +13,18 @@
     </Style>
 
     <Style TargetType="TextBox">
-      <Setter Property="FontSize" Value="40" />
+      <Setter Property="FontSize" Value="32" />
       <Setter Property="Background" Value="{StaticResource 30Grey}" />
       <Setter Property="BorderThickness" Value="0, 0, 0 , 2.5" />
       <Setter Property="BorderBrush" Value="{StaticResource AppGrey}" />
     </Style>
 
     <Style TargetType="DataGridColumnHeader">
-      <Setter Property="FontSize" Value="20" />
+      <Setter Property="FontSize" Value="24" />
+    </Style>
+
+    <Style TargetType="DataGridCell">
+      <Setter Property="FontSize" Value="18" />
     </Style>
 
   </Application.Resources>

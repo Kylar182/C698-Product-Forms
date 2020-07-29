@@ -5,17 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:C698_Product_WPF"
         mc:Ignorable="d"
-        Title="MainWindow" MinHeight="1080" Width="1920">
+        Title="Main" MinHeight="1080" Width="1920">
   
   <Grid>
     <Grid.ColumnDefinitions>
+      <ColumnDefinition Width=".5*" />
       <ColumnDefinition Width="4*" />
-      <ColumnDefinition Width="*" />
       <ColumnDefinition Width="3*" />
       <ColumnDefinition Width=".5*" />
       <ColumnDefinition Width="4*" />
-      <ColumnDefinition Width="*" />
       <ColumnDefinition Width="3*" />
+      <ColumnDefinition Width=".5*" />
     </Grid.ColumnDefinitions>
     <Grid.RowDefinitions>
       <RowDefinition Height="1*" />
@@ -24,16 +24,16 @@
       <RowDefinition Height="1*" />
       <RowDefinition Height="1*" />
     </Grid.RowDefinitions>
-    <Label Content="Inventory Management System" 
+    <Label Content="Inventory Management System" Grid.Column="1"
            HorizontalAlignment="Left"
-           FontSize="30" Margin="30, 10, 0, 0" FontWeight="SemiBold"/>
+           FontSize="30" Margin="0, 10" FontWeight="SemiBold"/>
 
-    <Label Grid.Row="1" Content="Parts" 
+    <Label Grid.Row="1" Grid.Column="1" Content="Parts" 
            HorizontalAlignment="Left" VerticalAlignment="Bottom"
-           FontSize="30" Margin="30, 10" FontWeight="SemiBold"/>
+           FontSize="30" Margin="0, 10" FontWeight="SemiBold"/>
 
     <Button Grid.Column="1" Grid.Row="1" Content="Search" 
-            VerticalAlignment="Center" HorizontalAlignment="Center"
+            VerticalAlignment="Center" HorizontalAlignment="Right"
             FontSize="20" Padding="10">
       <Button.Resources>
         <Style TargetType="Border">
@@ -42,15 +42,15 @@
       </Button.Resources>
     </Button>
 
-      <TextBox Grid.Column="2" Grid.Row="1" VerticalAlignment="Center"
-             HorizontalAlignment="Stretch" Margin="30" />
+    <TextBox Grid.Column="2" Grid.Row="1" VerticalAlignment="Center"
+            HorizontalAlignment="Stretch" Margin="30" />
 
-    <Label Grid.Row="1" Grid.Column="4" Content="Products" 
+    <Label Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="2" Content="Products" 
            HorizontalAlignment="Left" VerticalAlignment="Bottom"
-           FontSize="30" Margin="30, 10" FontWeight="SemiBold"/>
+           FontSize="30" Margin="0, 10" FontWeight="SemiBold"/>
 
-    <Button Grid.Row="1" Grid.Column="5" Content="Search" 
-            VerticalAlignment="Center" HorizontalAlignment="Center"
+    <Button Grid.Row="1" Grid.Column="4" Content="Search" 
+            VerticalAlignment="Center" HorizontalAlignment="Right"
             FontSize="20" Padding="10">
       
       <Button.Resources>
@@ -60,32 +60,127 @@
       </Button.Resources>
     </Button>
 
-    <TextBox Grid.Row="1" Grid.Column="6" VerticalAlignment="Center"
+    <TextBox Grid.Row="1" Grid.Column="5" VerticalAlignment="Center"
              HorizontalAlignment="Stretch" Margin="30" />
 
-    <DataGrid Grid.Row="2" Grid.ColumnSpan="3" Margin="30, 0, 0, 0" AutoGenerateColumns="False" 
+    <DataGrid Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" AutoGenerateColumns="False" 
               Name="PartsGrid" IsReadOnly="True">
       <DataGrid.Columns>
-        <DataGridTextColumn Header="Part ID" Width="*" Binding="{Binding Id}" />
-        <DataGridTextColumn Header="Name" Width="*" Binding="{Binding Name}" />
-        <DataGridTextColumn Header="Inventory" Width="*" Binding="{Binding InStock}" />
+        <DataGridTextColumn Header="Part ID" Width=".85*" Binding="{Binding Id}" />
+        <DataGridTextColumn Header="Name" Width="1.25*" Binding="{Binding Name}" />
+        <DataGridTextColumn Header="Inventory" Width=".85*" Binding="{Binding InStock}" />
         <DataGridTextColumn Header="Price" Width="*" Binding="{Binding Price}" />
-        <DataGridTextColumn Header="Min" Width="*" Binding="{Binding Min}" />
-        <DataGridTextColumn Header="Max" Width="*" Binding="{Binding Max}" />
+        <DataGridTextColumn Header="Min" Width=".75*" Binding="{Binding Min}" />
+        <DataGridTextColumn Header="Max" Width=".75*" Binding="{Binding Max}" />
       </DataGrid.Columns>
     </DataGrid>
 
-    <DataGrid Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="3" Margin="0, 0, 30, 0" AutoGenerateColumns="False"
+    <DataGrid Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="2" AutoGenerateColumns="False"
                Name="ProductsGrid" IsReadOnly="True">
       <DataGrid.Columns>
-        <DataGridTextColumn Header="Product ID" Width="*" Binding="{Binding Id}" />
-        <DataGridTextColumn Header="Name" Width="*" Binding="{Binding Name}" />
-        <DataGridTextColumn Header="Inventory" Width="*" Binding="{Binding InStock}" />
+        <DataGridTextColumn Header="Product ID" Width=".85*" Binding="{Binding Id}" />
+        <DataGridTextColumn Header="Name" Width="1.25*" Binding="{Binding Name}" />
+        <DataGridTextColumn Header="Inventory" Width=".85*" Binding="{Binding InStock}" />
         <DataGridTextColumn Header="Price" Width="*" Binding="{Binding Price}" />
-        <DataGridTextColumn Header="Min" Width="*" Binding="{Binding Min}" />
-        <DataGridTextColumn Header="Max" Width="*" Binding="{Binding Max}" />
+        <DataGridTextColumn Header="Min" Width=".75*" Binding="{Binding Min}" />
+        <DataGridTextColumn Header="Max" Width=".75*" Binding="{Binding Max}" />
       </DataGrid.Columns>
     </DataGrid>
+
+    <Grid Grid.Column="2" Grid.Row="3">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="*" />
+      </Grid.ColumnDefinitions>
+
+      <Button Grid.Column="0" Content="Add" 
+            VerticalAlignment="Center" HorizontalAlignment="Center"
+            FontSize="20" Padding="10" Click="Parts_Add_Click">
+        <Button.Resources>
+          <Style TargetType="Border">
+            <Setter Property="CornerRadius" Value="7.5"/>
+          </Style>
+        </Button.Resources>
+      </Button>
+
+      <Button Grid.Column="1" Content="Modify" 
+            VerticalAlignment="Center" HorizontalAlignment="Center"
+            FontSize="20" Padding="10" Click="Parts_Modify_Click">
+        <Button.Resources>
+          <Style TargetType="Border">
+            <Setter Property="CornerRadius" Value="7.5"/>
+          </Style>
+        </Button.Resources>
+      </Button>
+
+      <Button Grid.Column="2" Grid.Row="3" Content="Delete" 
+            VerticalAlignment="Center" HorizontalAlignment="Center"
+            FontSize="20" Padding="10" Click="Parts_Delete_Click">
+        <Button.Resources>
+          <Style TargetType="Border">
+            <Setter Property="CornerRadius" Value="7.5"/>
+          </Style>
+        </Button.Resources>
+      </Button>
+    </Grid>
+
+    <Grid Grid.Column="5" Grid.Row="3">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="*" />
+      </Grid.ColumnDefinitions>
+
+      <Button Grid.Column="0" Content="Add" 
+            VerticalAlignment="Center" HorizontalAlignment="Center"
+            FontSize="20" Padding="10" Click="Products_Add_Click">
+        <Button.Resources>
+          <Style TargetType="Border">
+            <Setter Property="CornerRadius" Value="7.5"/>
+          </Style>
+        </Button.Resources>
+      </Button>
+
+      <Button Grid.Column="1" Content="Modify" 
+            VerticalAlignment="Center" HorizontalAlignment="Center"
+            FontSize="20" Padding="10" Click="Products_Modify_Click">
+        <Button.Resources>
+          <Style TargetType="Border">
+            <Setter Property="CornerRadius" Value="7.5"/>
+          </Style>
+        </Button.Resources>
+      </Button>
+
+      <Button Grid.Column="2" Grid.Row="3" Content="Delete" 
+            VerticalAlignment="Center" HorizontalAlignment="Center"
+            FontSize="20" Padding="10" Click="Products_Delete_Click">
+        
+        <Button.Resources>
+          <Style TargetType="Border">
+            <Setter Property="CornerRadius" Value="7.5"/>
+          </Style>
+        </Button.Resources>
+      </Button>
+    </Grid>
+
+    <Grid Grid.Column="5" Grid.Row="4">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="*" />
+      </Grid.ColumnDefinitions>
+
+      <Button Grid.Column="2" Grid.Row="3" Content="Exit" Click="Exit_Click"
+            VerticalAlignment="Top" HorizontalAlignment="Center"
+            FontSize="20" Padding="10" Margin="10">
+        <Button.Resources>
+          <Style TargetType="Border">
+            <Setter Property="CornerRadius" Value="7.5"/>
+          </Style>
+        </Button.Resources>
+      </Button>
+    </Grid>
 
   </Grid>
 </Window>
