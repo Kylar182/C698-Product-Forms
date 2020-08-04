@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace C698_Product_WPF.EntityModels
+namespace C698_Product_WPF.Data.EntityModels
 {
   public class PartProduct
   {

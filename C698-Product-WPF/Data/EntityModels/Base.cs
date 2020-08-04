@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace C698_Product_WPF.EntityModels
+namespace C698_Product_WPF.Data.EntityModels
 {
   /// <summary>
   /// Base Model for Entity Models to Inherit From

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using C698_Product_WPF.EntityModels;
+using C698_Product_WPF.Data.EntityModels;
 
 namespace C698_Product_WPF.Persistence.Repositories.Interfaces
 {

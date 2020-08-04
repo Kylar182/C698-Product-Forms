@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace C698_Product_WPF.Extensions
+﻿namespace C698_Product_WPF.Extensions
 {
   public static class TrimExtension
   {

@@ -3,8 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:C698_Product_WPF"
              Startup="OnStartup">
+  
   <Application.Resources>
-    <SolidColorBrush x:Key="30Grey" Color="#30868E96"/>
+    <SolidColorBrush x:Key="Grey30" Color="#30868E96"/>
     <SolidColorBrush x:Key="AppGrey" Color="#868E96"/>
 
     <Style TargetType="Button">
@@ -13,8 +14,7 @@
     </Style>
 
     <Style TargetType="TextBox">
-      <Setter Property="FontSize" Value="32" />
-      <Setter Property="Background" Value="{StaticResource 30Grey}" />
+      <Setter Property="Background" Value="{StaticResource Grey30}" />
       <Setter Property="BorderThickness" Value="0, 0, 0 , 2.5" />
       <Setter Property="BorderBrush" Value="{StaticResource AppGrey}" />
     </Style>

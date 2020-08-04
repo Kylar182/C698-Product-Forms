@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace C698_Product_WPF.EntityModels
+namespace C698_Product_WPF.Data.EntityModels
 {
-  public class Part : Base
+  public class Product : Base
   {
     [Range(0.00, 99999999999.99)]
     public decimal Price { get; set; }
@@ -13,8 +13,6 @@ namespace C698_Product_WPF.EntityModels
     public int Min { get; set; }
     public int Max { get; set; }
 
-    public Source Source { get; set; }
-
-    public List<PartProduct> Products { get; set; }
+    public List<PartProduct> Parts { get; set; }
   }
 }

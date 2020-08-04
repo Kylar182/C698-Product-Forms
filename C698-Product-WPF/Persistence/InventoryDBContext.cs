@@ -1,4 +1,5 @@
-﻿using C698_Product_WPF.EntityModels;
+﻿using C698_Product_WPF.Data.EntityModels;
+using C698_Product_WPF.Data.EntityModels.Types;
 using Microsoft.EntityFrameworkCore;
 
 namespace C698_Product_WPF.Persistence
@@ -49,19 +50,19 @@ namespace C698_Product_WPF.Persistence
       {
         new Part
         {
-          Id = 1, Name = "Wheel", InStock = 15, Price = 12.11M, Min = 5, Max = 25, Source = Source.InHouse
+          Id = 1, Name = "Wheel", InStock = 15, Price = 12.11M, Min = 5, Max = 25, Source = Source.InHouse, InOut = "12"
         },
         new Part
         {
-          Id = 2, Name = "Pedal", InStock = 11, Price = 8.22M, Min = 1, Max = 25, Source = Source.InHouse
+          Id = 2, Name = "Pedal", InStock = 11, Price = 8.22M, Min = 1, Max = 25, Source = Source.InHouse, InOut = "29"
         },
         new Part
         {
-          Id = 3, Name = "Chain", InStock = 12, Price = 8.33M, Min = 5, Max = 25, Source = Source.OutSourced
+          Id = 3, Name = "Chain", InStock = 12, Price = 8.33M, Min = 5, Max = 25, Source = Source.OutSourced, InOut = "Smith Foundry, Inc."
         },
         new Part
         {
-          Id = 4, Name = "Seat", InStock = 8, Price = 4.55M, Min = 2, Max = 15, Source = Source.OutSourced
+          Id = 4, Name = "Seat", InStock = 8, Price = 4.55M, Min = 2, Max = 15, Source = Source.OutSourced, InOut = "Smith Foundry, Inc."
         }
       };
     }

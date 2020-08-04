@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using C698_Product_WPF.EntityModels;
+using C698_Product_WPF.Data.EntityModels;
 using C698_Product_WPF.Persistence.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
@@ -33,7 +33,7 @@ namespace C698_Product_WPF.Persistence.Repositories
       return part;
     }
 
-    public async Task<Part> UpdateItemAsync(Part part)
+    public async Task<Part> UpdateItem(Part part)
     {
       _context.Update(part);
       await _context.SaveChangesAsync();

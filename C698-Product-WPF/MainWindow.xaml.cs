@@ -2,7 +2,9 @@
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
-using C698_Product_WPF.EntityModels;
+using C698_Product_WPF.Data.EntityModels;
+using C698_Product_WPF.Data.Supervisors.Interfaces;
+using C698_Product_WPF.Data.ViewModels;
 using C698_Product_WPF.Extensions;
 using C698_Product_WPF.Persistence.Repositories.Interfaces;
 
@@ -13,14 +15,14 @@ namespace C698_Product_WPF
   /// </summary>
   public partial class MainWindow : Window
   {
-    private readonly IPartRepository _partRepository;
+    private readonly IPartSupervisor _partSupervisor;
     private readonly IProductRepository _productRepository;
-    List<Part> parts;
+    List<PartVM> parts;
     List<Product> products;
 
-    public MainWindow(IPartRepository partRepository, IProductRepository productRepository)
+    public MainWindow(IPartSupervisor partSupervisor, IProductRepository productRepository)
     {
-      _partRepository = partRepository;
+      _partSupervisor = partSupervisor;
       _productRepository = productRepository;
       InitializeComponent();
       GetData();
@@ -28,7 +30,7 @@ namespace C698_Product_WPF
 
     private async Task GetData()
     {
-      parts = await _partRepository.GetAll();
+      parts = await _partSupervisor.GetAll();
       products = await _productRepository.GetAll();
       PartsGrid.ItemsSource = parts;
       ProductsGrid.ItemsSource = products;
@@ -38,7 +40,7 @@ namespace C698_Product_WPF
     {
       if (Parts_Search.Text.TrimFix() != null && Parts_Search.Text.TrimFix().Length > 0)
       {
-        PartsGrid.ItemsSource = parts.Where(x => x.Name.ToLower().Contains(Parts_Search.Text.ToLower())).ToList();
+        PartsGrid.ItemsSource = parts.Where(x => x.Id.ToString().ToLower().Contains(Parts_Search.Text.ToLower())).ToList();
       }
       else
         PartsGrid.ItemsSource = parts;
@@ -48,19 +50,20 @@ namespace C698_Product_WPF
     {
       if (Products_Search.Text.TrimFix() != null && Products_Search.Text.TrimFix().Length > 0)
       {
-        ProductsGrid.ItemsSource = products.Where(x => x.Name.ToLower().Contains(Products_Search.Text.ToLower())).ToList();
+        ProductsGrid.ItemsSource = products.Where(x => x.Id.ToString().ToLower().Contains(Products_Search.Text.ToLower())).ToList();
       }
       else
         ProductsGrid.ItemsSource = products;
     }
 
-    private void Parts_Add_Click(object s, RoutedEventArgs e)
+    private async void Parts_Add_Click(object s, RoutedEventArgs e)
     {
 
     }
 
-    private void Parts_Modify_Click(object s, RoutedEventArgs e)
+    private async void Parts_Modify_Click(object s, RoutedEventArgs e)
     {
+      PartVM selected = (PartVM)PartsGrid.SelectedItem;
 
     }
 
