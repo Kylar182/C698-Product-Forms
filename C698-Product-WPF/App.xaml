@@ -1,8 +1,9 @@
 ﻿<Application x:Class="C698_Product_WPF.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"             
              xmlns:local="clr-namespace:C698_Product_WPF"
-             Startup="OnStartup">
+             xmlns:viewmodels="clr-namespace:C698_Product_WPF.Data.ViewModels"
+             xmlns:dialogs="clr-namespace:C698_Product_WPF.Views.Dialogs">
   
   <Application.Resources>
     <SolidColorBrush x:Key="Grey30" Color="#30868E96"/>

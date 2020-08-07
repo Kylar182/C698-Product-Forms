@@ -2,11 +2,14 @@
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using C698_Product_WPF.Data.DTOs;
 using C698_Product_WPF.Data.EntityModels;
+using C698_Product_WPF.Data.EntityModels.Types;
 using C698_Product_WPF.Data.Supervisors.Interfaces;
 using C698_Product_WPF.Data.ViewModels;
 using C698_Product_WPF.Extensions;
 using C698_Product_WPF.Persistence.Repositories.Interfaces;
+using C698_Product_WPF.Views.Dialogs;
 
 namespace C698_Product_WPF
 {
@@ -17,14 +20,22 @@ namespace C698_Product_WPF
   {
     private readonly IPartSupervisor _partSupervisor;
     private readonly IProductRepository _productRepository;
-    List<PartVM> parts;
+    private readonly IPartRepository _partRepository;
+
+    List<PartDTO> parts;
     List<Product> products;
 
-    public MainWindow(IPartSupervisor partSupervisor, IProductRepository productRepository)
+    public MainWindow(
+      IPartSupervisor partSupervisor,
+      IProductRepository productRepository,
+      IPartRepository partRepository
+      )
     {
       _partSupervisor = partSupervisor;
       _productRepository = productRepository;
+      _partRepository = partRepository;
       InitializeComponent();
+      WindowStartupLocation = WindowStartupLocation.CenterScreen;
       GetData();
     }
 
@@ -56,20 +67,36 @@ namespace C698_Product_WPF
         ProductsGrid.ItemsSource = products;
     }
 
-    private async void Parts_Add_Click(object s, RoutedEventArgs e)
+    private void Parts_Add_Click(object s, RoutedEventArgs e)
     {
-
+      PartVM vm = new PartVM(_partRepository);
+      PartDialog dialog = new PartDialog();
+      dialog.DataContext = vm;
+      dialog.ShowDialog();
     }
 
-    private async void Parts_Modify_Click(object s, RoutedEventArgs e)
+    private void Parts_Modify_Click(object s, RoutedEventArgs e)
     {
       PartVM selected = (PartVM)PartsGrid.SelectedItem;
-
+      if (selected != null && selected != default(PartVM))
+      {
+        PartVM vm = PartVM.LoadVM(_partRepository, selected.Id.Value, CUD.Modify);
+        PartDialog dialog = new PartDialog();
+        dialog.DataContext = vm;
+        dialog.ShowDialog();
+      }
     }
 
     private void Parts_Delete_Click(object s, RoutedEventArgs e)
     {
-
+      PartVM selected = (PartVM)PartsGrid.SelectedItem;
+      if (selected != null && selected != default(PartVM))
+      {
+        PartVM vm = PartVM.LoadVM(_partRepository, selected.Id.Value, CUD.Delete);
+        PartDialog dialog = new PartDialog();
+        dialog.DataContext = vm;
+        dialog.ShowDialog();
+      }
     }
 
     private void Products_Add_Click(object s, RoutedEventArgs e)

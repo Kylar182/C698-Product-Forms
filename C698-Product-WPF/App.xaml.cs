@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using C698_Product_WPF.Data.Supervisors;
 using C698_Product_WPF.Data.Supervisors.Interfaces;
+using C698_Product_WPF.Data.ViewModels;
 using C698_Product_WPF.Persistence;
 using C698_Product_WPF.Persistence.Repositories;
 using C698_Product_WPF.Persistence.Repositories.Interfaces;
@@ -16,6 +17,12 @@ namespace C698_Product_WPF
   {
     private ServiceProvider provider;
 
+    protected override void OnStartup(StartupEventArgs e)
+    {
+      MainWindow main = provider.GetService<MainWindow>();
+      main.Show();
+    }
+
     public App()
     {
       ServiceCollection services = new ServiceCollection();
@@ -25,17 +32,12 @@ namespace C698_Product_WPF
       });
 
       services.AddSingleton<MainWindow>();
+      services.AddSingleton<MainVM>();
       services.AddScoped<IPartRepository, PartRepository>();
       services.AddScoped<IProductRepository, ProductRepository>();
       services.AddScoped<IPartSupervisor, PartSupervisor>();
 
       provider = services.BuildServiceProvider();
-    }
-
-    private void OnStartup(object s, StartupEventArgs e)
-    {
-      var main = provider.GetService<MainWindow>();
-      main.Show();
     }
   }
 }
