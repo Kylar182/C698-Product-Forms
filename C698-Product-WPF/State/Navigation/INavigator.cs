@@ -11,7 +11,7 @@ namespace C698_Product_WPF.State.Navigation
   }
   public interface INavigator
   {
-    BaseView CurrentVM { get; set; }
+    BaseVM CurrentVM { get; set; }
     ICommand UpdateCurrentVM => new UpdateCurrentVM(this);
   }
 }

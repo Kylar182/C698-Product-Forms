@@ -69,32 +69,29 @@ namespace C698_Product_WPF
 
     private void Parts_Add_Click(object s, RoutedEventArgs e)
     {
-      PartVM vm = new PartVM(_partRepository);
       PartDialog dialog = new PartDialog();
-      dialog.DataContext = vm;
+      dialog.MainGrid.DataContext = new PartVM(_partRepository, CUD.Add);
       dialog.ShowDialog();
     }
 
     private void Parts_Modify_Click(object s, RoutedEventArgs e)
     {
-      PartVM selected = (PartVM)PartsGrid.SelectedItem;
-      if (selected != null && selected != default(PartVM))
+      PartDTO selected = (PartDTO)PartsGrid.SelectedItem;
+      if (selected != null && selected != default(PartDTO))
       {
-        PartVM vm = PartVM.LoadVM(_partRepository, selected.Id.Value, CUD.Modify);
         PartDialog dialog = new PartDialog();
-        dialog.DataContext = vm;
+        dialog.MainGrid.DataContext = PartVM.LoadVM(_partRepository, selected.Id.Value, CUD.Modify);
         dialog.ShowDialog();
       }
     }
 
     private void Parts_Delete_Click(object s, RoutedEventArgs e)
     {
-      PartVM selected = (PartVM)PartsGrid.SelectedItem;
-      if (selected != null && selected != default(PartVM))
+      PartDTO selected = (PartDTO)PartsGrid.SelectedItem;
+      if (selected != null && selected != default(PartDTO))
       {
-        PartVM vm = PartVM.LoadVM(_partRepository, selected.Id.Value, CUD.Delete);
         PartDialog dialog = new PartDialog();
-        dialog.DataContext = vm;
+        dialog.MainGrid.DataContext = PartVM.LoadVM(_partRepository, selected.Id.Value, CUD.Delete);
         dialog.ShowDialog();
       }
     }

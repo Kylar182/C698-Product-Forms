@@ -32,9 +32,15 @@ namespace C698_Product_WPF.Data.DTOs
       Max = part.Max;
       Source = part.Source;
       if (part.Source == Source.InHouse)
+      {
         MachineId = Convert.ToInt32(part.InOut);
+        CompanyName = "";
+      }
       else
+      {
+        MachineId = 0;
         CompanyName = part.InOut;
+      }
     }
   }
 }

@@ -7,9 +7,9 @@ namespace C698_Product_WPF.State.Navigation
 {
   public class Navigator : ObservableObject, INavigator
   {
-    private BaseView _currentVM;
+    private BaseVM _currentVM;
 
-    public BaseView CurrentVM
+    public BaseVM CurrentVM
     {
       get
       {

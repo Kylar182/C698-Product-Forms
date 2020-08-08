@@ -1,9 +1,7 @@
 ﻿<Application x:Class="C698_Product_WPF.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"             
-             xmlns:local="clr-namespace:C698_Product_WPF"
-             xmlns:viewmodels="clr-namespace:C698_Product_WPF.Data.ViewModels"
-             xmlns:dialogs="clr-namespace:C698_Product_WPF.Views.Dialogs">
+             xmlns:local="clr-namespace:C698_Product_WPF">
   
   <Application.Resources>
     <SolidColorBrush x:Key="Grey30" Color="#30868E96"/>
@@ -12,12 +10,27 @@
     <Style TargetType="Button">
       <Setter Property="BorderThickness" Value="2.5" />
       <Setter Property="BorderBrush" Value="{StaticResource AppGrey}" />
+      <Setter Property="FontSize" Value="20" />
+      <Setter Property="Padding" Value="10" />
+      <Style.Resources>
+        <Style TargetType="Border">
+          <Setter Property="CornerRadius" Value="7.5"/>
+        </Style>
+      </Style.Resources>
+    </Style>
+
+    <Style TargetType="Label">
+      <Setter Property="FontSize" Value="16" />
     </Style>
 
     <Style TargetType="TextBox">
       <Setter Property="Background" Value="{StaticResource Grey30}" />
       <Setter Property="BorderThickness" Value="0, 0, 0 , 2.5" />
       <Setter Property="BorderBrush" Value="{StaticResource AppGrey}" />
+      <Setter Property="FontSize" Value="16" />
+      <Setter Property="Margin" Value="25, 0, 25, 0" />
+      <Setter Property="VerticalAlignment" Value="Center" />
+      <Setter Property="HorizontalAlignment" Value="Stretch" />
     </Style>
 
     <Style TargetType="DataGridColumnHeader">

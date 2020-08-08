@@ -2,7 +2,7 @@
 
 namespace C698_Product_WPF.Data.ViewModels
 {
-  public class MainVM : BaseView
+  public class MainVM : BaseVM
   {
     public INavigator Navigator { get; set; } = new Navigator();
   }

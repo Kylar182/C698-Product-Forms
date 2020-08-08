@@ -12,7 +12,7 @@
     <vm:PartVM x:Key="vm" />
   </Window.Resources>
 
-  <Grid DataContext="{StaticResource vm}">
+  <Grid x:Name="MainGrid" DataContext="{StaticResource vm}">
     <Grid.ColumnDefinitions>
       <ColumnDefinition Width="*" />
       <ColumnDefinition Width="*" />
@@ -31,55 +31,57 @@
     </Grid.RowDefinitions>
 
     <Label Content="{Binding WindowLabel}" HorizontalAlignment="Left"
-           FontSize="16" Margin="10, 5" FontWeight="SemiBold"/>
+           FontSize="18" Margin="10, 5" FontWeight="SemiBold"/>
 
-    <Label Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" Content="ID" 
-           FontSize="12" />
+    <Label Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" Content="ID" />
 
-    <TextBox Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Center" 
-             HorizontalAlignment="Stretch" Margin="25, 0, 25, 0" FontSize="12"
-             InputScope="Number" IsReadOnly="True" Text="{Binding Id, Mode=TwoWay}" />
+    <TextBox Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" InputScope="Number" IsReadOnly="True" 
+             Text="{Binding Id, Mode=TwoWay}" />
 
-    <Label Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right" Content="Name" 
-           FontSize="12" />
+    <Label Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right" Content="Name" />
 
-    <TextBox Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" VerticalAlignment="Center" 
-             HorizontalAlignment="Stretch" Margin="25, 0, 25, 0" FontSize="12" Text="{Binding Name, Mode=TwoWay}" />
+    <TextBox Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" Text="{Binding Name, Mode=TwoWay}"
+             IsReadOnly="{Binding Deleting}" />
 
-    <Label Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Right" Content="Inventory" 
-           FontSize="12" />
+    <Label Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Right" Content="Inventory" />
 
-    <TextBox Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="3" VerticalAlignment="Center" InputScope="Number"
-             HorizontalAlignment="Stretch" Margin="25, 0, 25, 0" FontSize="12" Text="{Binding InStock, Mode=TwoWay}" />
+    <TextBox Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="3" InputScope="Number"
+             Text="{Binding InStock, Mode=TwoWay}" IsReadOnly="{Binding Deleting}" />
 
-    <Label Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Right" Content="Price/Cost" 
-           FontSize="12" />
+    <Label Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Right" Content="Price/Cost" />
 
-    <TextBox Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="4" VerticalAlignment="Center" InputScope="Number" 
-             HorizontalAlignment="Stretch" Margin="25, 0, 25, 0" FontSize="12" Text="{Binding Price, Mode=TwoWay}" />
+    <TextBox Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="4" InputScope="Number"
+             Text="{Binding Price, Mode=TwoWay}" IsReadOnly="{Binding Deleting}" />
 
-    <Label Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Right" Content="Max" 
-           FontSize="12" />
+    <Label Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Right" Content="Max" />
 
-    <TextBox Grid.Column="1" Grid.Row="5" VerticalAlignment="Center" InputScope="Number" 
-             HorizontalAlignment="Stretch" Margin="25, 0, 25, 0" FontSize="12" Text="{Binding Max, Mode=TwoWay}" />
+    <TextBox Grid.Column="1" Grid.Row="5" InputScope="Number" Text="{Binding Max, Mode=TwoWay}" 
+             IsReadOnly="{Binding Deleting}" />
 
     <Label Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="5" VerticalAlignment="Center" 
-           HorizontalAlignment="Center" Content="Min" FontSize="12" />
+           HorizontalAlignment="Center" Content="Min" />
 
-    <TextBox Grid.Column="2" Grid.Row="5" VerticalAlignment="Center" InputScope="Number" 
-             HorizontalAlignment="Stretch" Margin="25, 0, 25, 0" FontSize="12" Text="{Binding Min, Mode=TwoWay}" />
+    <TextBox Grid.Column="2" Grid.Row="5" InputScope="Number" Text="{Binding Min, Mode=TwoWay}"
+             IsReadOnly="{Binding Deleting}" />
 
-    <Label Grid.Row="6" VerticalAlignment="Center" HorizontalAlignment="Center" Content="{Binding InOut}" 
-           FontSize="12" />
+    <Label Grid.Row="6" VerticalAlignment="Center" HorizontalAlignment="Right" 
+           Content="{Binding InOut}" />
 
-    <TextBox Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="6" VerticalAlignment="Center" FontSize="12"
-             Visibility="{Binding MachineIdShow, Mode=TwoWay}" HorizontalAlignment="Stretch" Margin="25, 0, 25, 0"
-             Text="{Binding MachineId, Mode=TwoWay}" />
+    <TextBox Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="6" IsReadOnly="{Binding Deleting}"
+             Visibility="{Binding MachineIdShow}" Text="{Binding MachineId, Mode=TwoWay}" />
 
-    <TextBox Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="6" VerticalAlignment="Center" FontSize="12"
-             Visibility="{Binding CompanyNameShow, Mode=TwoWay}" HorizontalAlignment="Stretch" Margin="25, 0, 25, 0" 
-             Text="{Binding CompanyName, Mode=TwoWay}" />
+    <TextBox Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="6" IsReadOnly="{Binding Deleting}"
+             Visibility="{Binding CompanyNameShow}" Text="{Binding CompanyName, Mode=TwoWay}" />
+
+    <Button Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="7" Content="{Binding CUDString}" 
+            Command="{Binding AddUpdatePart}" VerticalAlignment="Center" HorizontalAlignment="Center"
+            Visibility="{Binding AddUpdateThis}">
+    </Button>
+
+    <Button Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="7" Content="{Binding CUDString}" 
+            VerticalAlignment="Center" HorizontalAlignment="Center" Command="{Binding DeletePart}" 
+            Visibility="{Binding DeleteThis}">
+    </Button>
 
   </Grid>
 </Window>

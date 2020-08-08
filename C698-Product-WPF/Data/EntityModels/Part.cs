@@ -25,7 +25,7 @@ namespace C698_Product_WPF.Data.EntityModels
 
     public Part(PartVM part)
     {
-      if (part.Id != null)
+      if (part.CUD != CUD.Add)
         Id = part.Id.Value;
 
       Name = part.Name;
