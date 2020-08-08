@@ -33,6 +33,10 @@
       <Setter Property="HorizontalAlignment" Value="Stretch" />
     </Style>
 
+    <Style TargetType="RadioButton">
+      <Setter Property="FontSize" Value="12" />
+    </Style>
+
     <Style TargetType="DataGridColumnHeader">
       <Setter Property="FontSize" Value="24" />
     </Style>

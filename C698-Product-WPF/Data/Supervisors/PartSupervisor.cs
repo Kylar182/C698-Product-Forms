@@ -23,5 +23,25 @@ namespace C698_Product_WPF.Data.Supervisors
 
       return vms;
     }
+
+    public async Task<PartDTO> GetById(int id)
+    {
+      return new PartDTO(await _repository.GetById(id));
+    }
+
+    public async Task<PartDTO> AddItem(Part part)
+    {
+      return new PartDTO(await _repository.AddItem(part));
+    }
+
+    public async Task<PartDTO> UpdateItem(Part part)
+    {
+      return new PartDTO(await _repository.UpdateItem(part));
+    }
+
+    public async Task Delete(int id)
+    {
+      await _repository.Delete(id);
+    }
   }
 }

@@ -1,7 +1,6 @@
 ﻿using System.Windows;
 using C698_Product_WPF.Data.Supervisors;
 using C698_Product_WPF.Data.Supervisors.Interfaces;
-using C698_Product_WPF.Data.ViewModels;
 using C698_Product_WPF.Persistence;
 using C698_Product_WPF.Persistence.Repositories;
 using C698_Product_WPF.Persistence.Repositories.Interfaces;
@@ -32,7 +31,6 @@ namespace C698_Product_WPF
       });
 
       services.AddSingleton<MainWindow>();
-      services.AddSingleton<MainVM>();
       services.AddScoped<IPartRepository, PartRepository>();
       services.AddScoped<IProductRepository, ProductRepository>();
       services.AddScoped<IPartSupervisor, PartSupervisor>();

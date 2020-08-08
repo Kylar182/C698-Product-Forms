@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
@@ -20,20 +21,17 @@ namespace C698_Product_WPF
   {
     private readonly IPartSupervisor _partSupervisor;
     private readonly IProductRepository _productRepository;
-    private readonly IPartRepository _partRepository;
 
     List<PartDTO> parts;
     List<Product> products;
 
     public MainWindow(
       IPartSupervisor partSupervisor,
-      IProductRepository productRepository,
-      IPartRepository partRepository
+      IProductRepository productRepository
       )
     {
-      _partSupervisor = partSupervisor;
       _productRepository = productRepository;
-      _partRepository = partRepository;
+      _partSupervisor = partSupervisor;
       InitializeComponent();
       WindowStartupLocation = WindowStartupLocation.CenterScreen;
       GetData();
@@ -67,32 +65,50 @@ namespace C698_Product_WPF
         ProductsGrid.ItemsSource = products;
     }
 
-    private void Parts_Add_Click(object s, RoutedEventArgs e)
+    private async void Parts_Add_Click(object s, RoutedEventArgs e)
     {
       PartDialog dialog = new PartDialog();
-      dialog.MainGrid.DataContext = new PartVM(_partRepository, CUD.Add);
-      dialog.ShowDialog();
-    }
-
-    private void Parts_Modify_Click(object s, RoutedEventArgs e)
-    {
-      PartDTO selected = (PartDTO)PartsGrid.SelectedItem;
-      if (selected != null && selected != default(PartDTO))
+      PartVM vm = new PartVM(_partSupervisor, CUD.Add);
+      vm.CloseAction = new Action(() => dialog.Close());
+      dialog.MainGrid.DataContext = vm;
+      bool? result = dialog.ShowDialog();
+      if (dialog.DialogResult.HasValue && dialog.DialogResult.Value)
       {
-        PartDialog dialog = new PartDialog();
-        dialog.MainGrid.DataContext = PartVM.LoadVM(_partRepository, selected.Id.Value, CUD.Modify);
-        dialog.ShowDialog();
+        await GetData();
       }
     }
 
-    private void Parts_Delete_Click(object s, RoutedEventArgs e)
+    private async void Parts_Modify_Click(object s, RoutedEventArgs e)
     {
       PartDTO selected = (PartDTO)PartsGrid.SelectedItem;
       if (selected != null && selected != default(PartDTO))
       {
         PartDialog dialog = new PartDialog();
-        dialog.MainGrid.DataContext = PartVM.LoadVM(_partRepository, selected.Id.Value, CUD.Delete);
+        PartVM vm = PartVM.LoadVM(_partSupervisor, selected.Id.Value, CUD.Modify);
+        vm.CloseAction = new Action(() => dialog.Close());
+        dialog.MainGrid.DataContext = vm;
         dialog.ShowDialog();
+        if (dialog.DialogResult.HasValue && dialog.DialogResult.Value)
+        {
+          await GetData();
+        }
+      }
+    }
+
+    private async void Parts_Delete_Click(object s, RoutedEventArgs e)
+    {
+      PartDTO selected = (PartDTO)PartsGrid.SelectedItem;
+      if (selected != null && selected != default(PartDTO))
+      {
+        PartDialog dialog = new PartDialog();
+        PartVM vm = PartVM.LoadVM(_partSupervisor, selected.Id.Value, CUD.Delete);
+        vm.CloseAction = new Action(() => dialog.Close());
+        dialog.MainGrid.DataContext = vm;
+        bool? result = dialog.ShowDialog();
+        if (dialog.DialogResult.HasValue && dialog.DialogResult.Value)
+        {
+          await GetData();
+        }
       }
     }
 

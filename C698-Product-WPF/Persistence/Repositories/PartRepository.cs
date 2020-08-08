@@ -35,9 +35,17 @@ namespace C698_Product_WPF.Persistence.Repositories
 
     public async Task<Part> UpdateItem(Part part)
     {
-      _context.Update(part);
+      Part current = await GetById(part.Id);
+      current.Name = part.Name;
+      current.Price = part.Price;
+      current.InStock = part.InStock;
+      current.Min = part.Min;
+      current.Max = part.Max;
+      current.Source = part.Source;
+      current.InOut = part.InOut;
+      _context.Update(current);
       await _context.SaveChangesAsync();
-      return part;
+      return current;
     }
 
     public async Task Delete(int id)

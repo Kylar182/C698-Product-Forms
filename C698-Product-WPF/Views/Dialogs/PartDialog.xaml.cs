@@ -12,5 +12,15 @@ namespace C698_Product_WPF.Views.Dialogs
       InitializeComponent();
       WindowStartupLocation = WindowStartupLocation.CenterScreen;
     }
+
+    private void Dialog_True(object sender, RoutedEventArgs e)
+    {
+      DialogResult = true;
+    }
+
+    private void Dialog_False(object sender, RoutedEventArgs e)
+    {
+      DialogResult = false;
+    }
   }
 }
