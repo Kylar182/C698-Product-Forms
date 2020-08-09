@@ -291,11 +291,13 @@ namespace C698_Product_WPF.Data.ViewModels
     public void AddPart(Part part)
     {
       PartProducts.Add(new PartProductDTO(part, CUD));
+      DeleteProduct = new DeleteProduct(this);
     }
 
     public void RemovePart(PartProductDTO part)
     {
       PartProducts.Remove(part);
+      DeleteProduct = new DeleteProduct(this);
     }
 
     public async Task Add()
