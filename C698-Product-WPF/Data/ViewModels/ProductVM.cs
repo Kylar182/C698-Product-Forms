@@ -100,8 +100,8 @@ namespace C698_Product_WPF.Data.ViewModels
       }
     }
 
-    private Part partSelected;
-    public Part PartSelected
+    private PartDTO partSelected;
+    public PartDTO PartSelected
     {
       get { return partSelected; }
       set
@@ -218,7 +218,7 @@ namespace C698_Product_WPF.Data.ViewModels
     }
 
     public ObservableCollection<PartProductDTO> PartProducts { get; set; }
-    public ObservableCollection<Part> Parts { get; set; }
+    public ObservableCollection<PartDTO> Parts { get; set; }
 
     public ProductVM() { }
 
@@ -233,13 +233,13 @@ namespace C698_Product_WPF.Data.ViewModels
       AddPartProduct = new AddPartProduct(this);
       RemovePartProduct = new RemovePartProduct(this);
       PartProducts = new ObservableCollection<PartProductDTO>();
-      Parts = new ObservableCollection<Part>();
+      Parts = new ObservableCollection<PartDTO>();
       _supervisor.GetAllParts().ContinueWith(t =>
       {
         if (t.Exception == null)
         {
-          List<Part> PartList = t.Result;
-          foreach (Part part in PartList)
+          List<PartDTO> PartList = t.Result;
+          foreach (PartDTO part in PartList)
             Parts.Add(part);
         }
       });
@@ -271,24 +271,27 @@ namespace C698_Product_WPF.Data.ViewModels
           else
             DeleteProduct = new DeleteProduct(this);
           foreach (PartProduct part in product.Parts)
-            PartProducts.Add(new PartProductDTO(part, CUD));
+          {
+            PartDTO dto = Parts.Where(prop => prop.Id == part.PartId).FirstOrDefault();
+            PartProducts.Add(new PartProductDTO(part, dto, CUD));
+          }
         }
       });
     }
 
     public async Task SearchPart()
     {
-      List<Part> PartList = await _supervisor.GetAllParts();
+      List<PartDTO> PartList = await _supervisor.GetAllParts();
       Parts.Clear();
 
       if (Search != null)
-        PartList = PartList.Where(x => x.Id == Search.Value).ToList();  
+        PartList = PartList.Where(x => x.Id == Search.Value).ToList();
 
-      foreach (Part part in PartList)
+      foreach (PartDTO part in PartList)
         Parts.Add(part);
     }
 
-    public void AddPart(Part part)
+    public void AddPart(PartDTO part)
     {
       PartProducts.Add(new PartProductDTO(part, CUD));
       DeleteProduct = new DeleteProduct(this);

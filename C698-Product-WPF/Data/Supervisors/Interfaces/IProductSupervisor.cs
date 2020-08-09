@@ -17,7 +17,7 @@ namespace C698_Product_WPF.Data.Supervisors.Interfaces
     /// <summary>
     /// Get All Parts from DB
     /// </summary>
-    Task<List<Part>> GetAllParts();
+    Task<List<PartDTO>> GetAllParts();
     /// <summary>
     /// Get Product from DB by Id
     /// </summary>

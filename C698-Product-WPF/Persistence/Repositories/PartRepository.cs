@@ -16,33 +16,42 @@ namespace C698_Product_WPF.Persistence.Repositories
       _context = context;
     }
 
-    public async Task<List<Part>> GetAll()
+    public async Task<List<Inhouse>> GetAllInHouse()
     {
-      return await _context.Parts.ToListAsync();
+      return await _context.InHouseParts.ToListAsync();
     }
 
-    public async Task<Part> GetById(int id)
+    public async Task<List<Outsourced>> GetAllOutsourced()
     {
-      return await _context.Parts.Where(q => q.Id == id).Include(prop => prop.Products).FirstOrDefaultAsync();
+      return await _context.OutSourcedParts.ToListAsync();
     }
 
-    public async Task<Part> AddItem(Part part)
+    public async Task<Inhouse> GetInhouseById(int id)
+    {
+      return await _context.InHouseParts.Where(q => q.Id == id).Include(prop => prop.Products).FirstOrDefaultAsync();
+    }
+
+    public async Task<Outsourced> GetOutSourcedById(int id)
+    {
+      return await _context.OutSourcedParts.Where(q => q.Id == id).Include(prop => prop.Products).FirstOrDefaultAsync();
+    }
+
+    public async Task<Inhouse> AddItem(Inhouse part)
     {
       _context.Add(part);
       await _context.SaveChangesAsync();
       return part;
     }
 
-    public async Task<Part> UpdateItem(Part part)
+    public async Task<Inhouse> UpdateItem(Inhouse part)
     {
-      Part current = await GetById(part.Id);
+      Inhouse current = await GetById(part.Id);
       current.Name = part.Name;
       current.Price = part.Price;
       current.InStock = part.InStock;
       current.Min = part.Min;
       current.Max = part.Max;
-      current.Source = part.Source;
-      current.InOut = part.InOut;
+      current.MachineId = part.MachineId;
       _context.Update(current);
       await _context.SaveChangesAsync();
       return current;

@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using C698_Product_WPF.Data.DTOs;
-using C698_Product_WPF.Data.EntityModels;
 
 namespace C698_Product_WPF.Data.Supervisors.Interfaces
 {
@@ -21,11 +20,11 @@ namespace C698_Product_WPF.Data.Supervisors.Interfaces
     /// <summary>
     /// Add Part to DB
     /// </summary>
-    Task<PartDTO> AddItem(Part part);
+    Task<PartDTO> AddItem(PartDTO part);
     /// <summary>
     /// Update Part in DB
     /// </summary>
-    Task<PartDTO> UpdateItem(Part part);
+    Task<PartDTO> UpdateItem(PartDTO part);
     /// <summary>
     /// Delete Part from DB by Id
     /// </summary>

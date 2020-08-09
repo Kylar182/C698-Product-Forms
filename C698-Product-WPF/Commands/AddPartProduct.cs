@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Input;
-using C698_Product_WPF.Data.EntityModels;
+using C698_Product_WPF.Data.DTOs;
 using C698_Product_WPF.Data.ViewModels;
 
 namespace C698_Product_WPF.Commands
@@ -18,7 +18,7 @@ namespace C698_Product_WPF.Commands
 
     public bool CanExecute(object parameter)
     {
-      if (Product.PartSelected != null && Product.PartSelected != default(Part))
+      if (Product.PartSelected != null && Product.PartSelected != default(PartDTO))
         return true;
       return false;
     }

@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using System.Windows;
 using C698_Product_WPF.Commands;
 using C698_Product_WPF.Data.DTOs;
-using C698_Product_WPF.Data.EntityModels;
 using C698_Product_WPF.Data.EntityModels.Types;
 using C698_Product_WPF.Data.Supervisors.Interfaces;
 
@@ -72,8 +71,8 @@ namespace C698_Product_WPF.Data.ViewModels
       set
       {
         source = value;
-        InHouse = (source == Source.InHouse) ? true : false;
-        Outsourced = (source == Source.OutSourced) ? true : false;
+        InHouse = (source == Source.InHouse);
+        Outsourced = (source == Source.OutSourced);
         InOut = (source == Source.InHouse) ? "Machine ID" : "Company Name";
         MachineIdShow = (source == Source.InHouse) ? Visibility.Visible : Visibility.Hidden;
         CompanyNameShow = (source == Source.OutSourced) ? Visibility.Visible : Visibility.Hidden;
@@ -301,13 +300,14 @@ namespace C698_Product_WPF.Data.ViewModels
 
     public async Task Add()
     {
-      await _supervisor.AddItem(new Part(this));
+      await _supervisor.AddItem(new PartDTO(this));
       Close();
     }
 
     public async Task Update()
     {
-      await _supervisor.UpdateItem(new Part(this));
+      if (Source == Source.InHouse)
+        await _supervisor.UpdateItem(new PartDTO(this));
       Close();
     }
 

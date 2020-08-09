@@ -7,21 +7,29 @@ namespace C698_Product_WPF.Persistence.Repositories.Interfaces
   public interface IPartRepository
   {
     /// <summary>
-    /// Get All Parts from DB
+    /// Get All In House Parts from DB
     /// </summary>
-    Task<List<Part>> GetAll();
+    Task<List<Inhouse>> GetAllInHouse();
+    /// <summary>
+    /// Get All Out Sourced Parts from DB
+    /// </summary>
+    Task<List<Outsourced>> GetAllOutsourced();
     /// <summary>
     /// Get Part from DB by Id
     /// </summary>
-    Task<Part> GetById(int id);
+    Task<Inhouse> GetInhouseById(int id);
+    /// <summary>
+    /// Get Part from DB by Id
+    /// </summary>
+    Task<Outsourced> GetOutSourcedById(int id);
     /// <summary>
     /// Add Part to DB
     /// </summary>
-    Task<Part> AddItem(Part part);
+    Task<Inhouse> AddItem(Inhouse part);
     /// <summary>
     /// Update Part in DB
     /// </summary>
-    Task<Part> UpdateItem(Part part);
+    Task<Inhouse> UpdateItem(Inhouse part);
     /// <summary>
     /// Delete Part from DB by Id
     /// </summary>

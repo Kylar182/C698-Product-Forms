@@ -13,14 +13,17 @@ namespace C698_Product_WPF.Persistence
 
     public DbSet<Product> Products { get; set; }
 
-    public DbSet<Part> Parts { get; set; }
+    public DbSet<Inhouse> InHouseParts { get; set; }
+
+    public DbSet<Outsourced> OutSourcedParts { get; set; }
 
     public DbSet<PartProduct> PartProducts { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
       builder.Entity<Product>().HasData(GetProducts());
-      builder.Entity<Part>().HasData(GetParts());
+      builder.Entity<Inhouse>().HasData(GetInHouseParts());
+      builder.Entity<Outsourced>().HasData(GetOutsourcedParts());
       builder.Entity<PartProduct>();
       base.OnModelCreating(builder);
     }
@@ -44,25 +47,32 @@ namespace C698_Product_WPF.Persistence
       };
     }
 
-    private Part[] GetParts()
+    private Inhouse[] GetInHouseParts()
     {
-      return new Part[]
+      return new Inhouse[]
       {
-        new Part
+        new Inhouse
         {
-          Id = 1, Name = "Wheel", InStock = 15, Price = 12.11M, Min = 5, Max = 25, Source = Source.InHouse, InOut = "12"
+          Id = 1, Name = "Wheel", InStock = 15, Price = 12.11M, Min = 5, Max = 25, MachineId = 12
         },
-        new Part
+        new Inhouse
         {
-          Id = 2, Name = "Pedal", InStock = 11, Price = 8.22M, Min = 1, Max = 25, Source = Source.InHouse, InOut = "29"
+          Id = 2, Name = "Pedal", InStock = 11, Price = 8.22M, Min = 1, Max = 25, MachineId = 29
+        }        
+      };
+    }
+
+    private Outsourced[] GetOutsourcedParts()
+    {
+      return new Outsourced[]
+      {
+        new Outsourced
+        {
+          Id = 3, Name = "Chain", InStock = 12, Price = 8.33M, Min = 5, Max = 25, CompanyName = "Smith Foundry, Inc."
         },
-        new Part
+        new Outsourced
         {
-          Id = 3, Name = "Chain", InStock = 12, Price = 8.33M, Min = 5, Max = 25, Source = Source.OutSourced, InOut = "Smith Foundry, Inc."
-        },
-        new Part
-        {
-          Id = 4, Name = "Seat", InStock = 8, Price = 4.55M, Min = 2, Max = 15, Source = Source.OutSourced, InOut = "Smith Foundry, Inc."
+          Id = 4, Name = "Seat", InStock = 8, Price = 4.55M, Min = 2, Max = 15, CompanyName = "Smith Foundry, Inc."
         }
       };
     }

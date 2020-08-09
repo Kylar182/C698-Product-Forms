@@ -19,10 +19,9 @@ namespace C698_Product_WPF.Data.DTOs
 
     public CUD CUD { get; set; }
 
-
     public PartProductDTO() { }
 
-    public PartProductDTO(Part part, CUD cud)
+    public PartProductDTO(PartDTO part, CUD cud)
     {
       Name = part.Name;
       Price = part.Price;
@@ -30,17 +29,17 @@ namespace C698_Product_WPF.Data.DTOs
       Min = part.Min;
       Max = part.Max;
       CUD = cud;
-      PartId = part.Id;
+      PartId = part.Id.Value;
     }
 
-    public PartProductDTO(PartProduct part, CUD cud)
+    public PartProductDTO(PartProduct part, PartDTO dto, CUD cud)
     {
       Id = part.Id;
-      Name = part.Part.Name;
-      Price = part.Part.Price;
-      InStock = part.Part.InStock;
-      Min = part.Part.Min;
-      Max = part.Part.Max;
+      Name = dto.Name;
+      Price = dto.Price;
+      InStock = dto.InStock;
+      Min = dto.Min;
+      Max = dto.Max;
       CUD = cud;
       PartId = part.PartId;
       ProductId = part.ProductId;

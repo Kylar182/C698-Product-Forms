@@ -18,7 +18,7 @@ namespace C698_Product_WPF.Commands
 
     public bool CanExecute(object parameter)
     {
-      if (Product.Id != null 
+      if (Product.Id != null
         && Product.CUD == CUD.Delete
         && Product.PartProducts.Count < 1)
         return true;

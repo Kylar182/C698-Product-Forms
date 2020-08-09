@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using C698_Product_WPF.Data.EntityModels;
 using C698_Product_WPF.Data.EntityModels.Types;
+using C698_Product_WPF.Data.ViewModels;
 
 namespace C698_Product_WPF.Data.DTOs
 {
@@ -22,7 +23,7 @@ namespace C698_Product_WPF.Data.DTOs
 
     public PartDTO() { }
 
-    public PartDTO(Part part)
+    public PartDTO(Inhouse part)
     {
       Id = part.Id;
       Name = part.Name;
@@ -30,17 +31,37 @@ namespace C698_Product_WPF.Data.DTOs
       InStock = part.InStock;
       Min = part.Min;
       Max = part.Max;
-      Source = part.Source;
-      if (part.Source == Source.InHouse)
-      {
-        MachineId = Convert.ToInt32(part.InOut);
-        CompanyName = "";
-      }
-      else
-      {
-        MachineId = 0;
-        CompanyName = part.InOut;
-      }
+      Source = Source.InHouse;
+      MachineId = part.MachineId;
+      CompanyName = "";
+    }
+
+    public PartDTO(Outsourced part)
+    {
+      Id = part.Id;
+      Name = part.Name;
+      Price = part.Price;
+      InStock = part.InStock;
+      Min = part.Min;
+      Max = part.Max;
+      Source = Source.OutSourced;
+      MachineId = 0;
+      CompanyName = part.CompanyName;
+    }
+
+    public PartDTO(PartVM part)
+    {
+      if (part.CUD != CUD.Add)
+        Id = part.Id.Value;
+
+      Name = part.Name;
+      Price = part.Price;
+      InStock = part.InStock;
+      Min = part.Min;
+      Max = part.Max;
+      Source = Source.OutSourced;
+      MachineId = part.MachineId;
+      CompanyName = part.CompanyName;
     }
   }
 }

@@ -17,7 +17,7 @@ namespace C698_Product_WPF.Commands
 
     public bool CanExecute(object parameter)
     {
-      if (Product.InStock > Product.Min 
+      if (Product.InStock > Product.Min
         && Product.InStock < Product.Max
         && Product.Min < Product.Max)
         return true;

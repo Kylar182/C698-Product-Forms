@@ -27,9 +27,16 @@ namespace C698_Product_WPF.Data.Supervisors
       return vms;
     }
 
-    public async Task<List<Part>> GetAllParts()
+    public async Task<List<PartDTO>> GetAllParts()
     {
-      return await _partRepository.GetAll();
+      List<PartDTO> parts = new List<PartDTO>();
+
+      foreach (Inhouse inHousePart in await _partRepository.GetAllInHouse())
+        parts.Add(new PartDTO(inHousePart));
+      foreach (Outsourced outsourcedPart in await _partRepository.GetAllOutsourced())
+        parts.Add(new PartDTO(outsourcedPart));
+
+      return parts;
     }
 
     public async Task<ProductDTO> GetById(int id)

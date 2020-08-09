@@ -31,7 +31,7 @@ namespace C698_Product_WPF
       });
 
       services.AddSingleton<MainWindow>();
-      services.AddScoped<IPartRepository, PartRepository>();
+      services.AddScoped<Persistence.Repositories.Interfaces.IPartRepository, PartRepository>();
       services.AddScoped<IProductRepository, ProductRepository>();
       services.AddScoped<IPartSupervisor, PartSupervisor>();
       services.AddScoped<IProductSupervisor, ProductSupervisor>();
