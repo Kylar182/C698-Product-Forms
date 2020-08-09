@@ -4,12 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using C698_Product_WPF.Data.DTOs;
-using C698_Product_WPF.Data.EntityModels;
 using C698_Product_WPF.Data.EntityModels.Types;
 using C698_Product_WPF.Data.Supervisors.Interfaces;
 using C698_Product_WPF.Data.ViewModels;
 using C698_Product_WPF.Extensions;
-using C698_Product_WPF.Persistence.Repositories.Interfaces;
 using C698_Product_WPF.Views.Dialogs;
 
 namespace C698_Product_WPF
@@ -20,18 +18,18 @@ namespace C698_Product_WPF
   public partial class MainWindow : Window
   {
     private readonly IPartSupervisor _partSupervisor;
-    private readonly IProductRepository _productRepository;
+    private readonly IProductSupervisor _productSupervisor;
 
     List<PartDTO> parts;
-    List<Product> products;
+    List<ProductDTO> products;
 
     public MainWindow(
       IPartSupervisor partSupervisor,
-      IProductRepository productRepository
+      IProductSupervisor productSupervisor
       )
     {
-      _productRepository = productRepository;
       _partSupervisor = partSupervisor;
+      _productSupervisor = productSupervisor;
       InitializeComponent();
       WindowStartupLocation = WindowStartupLocation.CenterScreen;
       GetData();
@@ -40,7 +38,7 @@ namespace C698_Product_WPF
     private async Task GetData()
     {
       parts = await _partSupervisor.GetAll();
-      products = await _productRepository.GetAll();
+      products = await _productSupervisor.GetAll();
       PartsGrid.ItemsSource = parts;
       ProductsGrid.ItemsSource = products;
     }

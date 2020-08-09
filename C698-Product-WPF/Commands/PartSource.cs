@@ -28,7 +28,7 @@ namespace C698_Product_WPF.Commands
       if (Convert.ToInt32(parameter) == 0)
       {
         Part.Source = Source.InHouse;
-      }        
+      }
       else
       {
         Part.Source = Source.OutSourced;

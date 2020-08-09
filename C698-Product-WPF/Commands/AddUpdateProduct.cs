@@ -1,23 +1,23 @@
 ﻿using System;
 using System.Windows.Input;
-using C698_Product_WPF.Data.EntityModels.Types;
 using C698_Product_WPF.Data.ViewModels;
 
 namespace C698_Product_WPF.Commands
 {
-  public class DeletePart : ICommand
+  public class AddUpdateProduct : ICommand
   {
-    public PartVM Part { get; set; }
     public event EventHandler CanExecuteChanged;
 
-    public DeletePart(PartVM vm)
+    public ProductVM Product { get; set; }
+
+    public AddUpdateProduct(ProductVM vm)
     {
-      Part = vm;
+      Product = vm;
     }
 
     public bool CanExecute(object parameter)
     {
-      if (Part.Id != null && Part.CUD == CUD.Delete)
+      if (Product.InStock > Product.Min && Product.InStock < Product.Max)
         return true;
 
       return false;
@@ -25,7 +25,10 @@ namespace C698_Product_WPF.Commands
 
     public async void Execute(object parameter)
     {
-      await Part.Delete();
+      if (Product.Id == null)
+        await Product.Add();
+      else
+        await Product.Update();
     }
   }
 }

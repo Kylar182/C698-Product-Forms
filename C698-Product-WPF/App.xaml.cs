@@ -34,6 +34,7 @@ namespace C698_Product_WPF
       services.AddScoped<IPartRepository, PartRepository>();
       services.AddScoped<IProductRepository, ProductRepository>();
       services.AddScoped<IPartSupervisor, PartSupervisor>();
+      services.AddScoped<IProductSupervisor, ProductSupervisor>();
 
       provider = services.BuildServiceProvider();
     }

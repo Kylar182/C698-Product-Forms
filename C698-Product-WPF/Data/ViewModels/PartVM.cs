@@ -13,8 +13,8 @@ namespace C698_Product_WPF.Data.ViewModels
   public class PartVM : BaseVM
   {
     private readonly IPartSupervisor _supervisor;
-    public bool Deleting => (CUD == CUD.Delete) ? true : false;
-    
+    public bool Deleting => (CUD == CUD.Delete);
+
 
     [Range(0.00, 99999999999.99)]
     private decimal price;
@@ -182,7 +182,7 @@ namespace C698_Product_WPF.Data.ViewModels
         OnPropertyChanged(nameof(CompanyName));
       }
     }
-    
+
     public Visibility AddUpdateThis => (CUD == CUD.Add || CUD == CUD.Modify) ? Visibility.Visible : Visibility.Hidden;
     public Visibility DeleteThis => (CUD == CUD.Delete) ? Visibility.Visible : Visibility.Hidden;
 

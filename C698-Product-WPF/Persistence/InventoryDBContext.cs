@@ -21,7 +21,7 @@ namespace C698_Product_WPF.Persistence
     {
       builder.Entity<Product>().HasData(GetProducts());
       builder.Entity<Part>().HasData(GetParts());
-      builder.Entity<PartProduct>().HasKey(pp => new { pp.PartId, pp.ProductId });
+      builder.Entity<PartProduct>();
       base.OnModelCreating(builder);
     }
 

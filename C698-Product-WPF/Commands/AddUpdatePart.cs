@@ -6,6 +6,8 @@ namespace C698_Product_WPF.Commands
 {
   public class AddUpdatePart : ICommand
   {
+    public event EventHandler CanExecuteChanged;
+
     public PartVM Part { get; set; }
 
     public AddUpdatePart(PartVM vm)
@@ -15,13 +17,10 @@ namespace C698_Product_WPF.Commands
 
     public bool CanExecute(object parameter)
     {
-      return true;
-    }
+      if (Part.InStock > Part.Min && Part.InStock < Part.Max)
+        return true;
 
-    public event EventHandler CanExecuteChanged
-    {
-      add { CommandManager.RequerySuggested += value; }
-      remove { CommandManager.RequerySuggested -= value; }
+      return false;
     }
 
     public async void Execute(object parameter)

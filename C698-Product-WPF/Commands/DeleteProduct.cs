@@ -5,19 +5,19 @@ using C698_Product_WPF.Data.ViewModels;
 
 namespace C698_Product_WPF.Commands
 {
-  public class DeletePart : ICommand
+  public class DeleteProduct : ICommand
   {
-    public PartVM Part { get; set; }
+    public ProductVM Product { get; set; }
     public event EventHandler CanExecuteChanged;
 
-    public DeletePart(PartVM vm)
+    public DeleteProduct(ProductVM vm)
     {
-      Part = vm;
+      Product = vm;
     }
 
     public bool CanExecute(object parameter)
     {
-      if (Part.Id != null && Part.CUD == CUD.Delete)
+      if (Product.Id != null && Product.CUD == CUD.Delete)
         return true;
 
       return false;
@@ -25,7 +25,7 @@ namespace C698_Product_WPF.Commands
 
     public async void Execute(object parameter)
     {
-      await Part.Delete();
+      await Product.Delete();
     }
   }
 }
