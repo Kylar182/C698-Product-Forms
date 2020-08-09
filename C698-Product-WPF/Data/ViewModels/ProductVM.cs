@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using C698_Product_WPF.Commands;
@@ -37,6 +38,7 @@ namespace C698_Product_WPF.Data.ViewModels
       set
       {
         inStock = value;
+        AddUpdateProduct = new AddUpdateProduct(this);
         OnPropertyChanged(nameof(InStock));
       }
     }
@@ -48,6 +50,7 @@ namespace C698_Product_WPF.Data.ViewModels
       set
       {
         min = value;
+        AddUpdateProduct = new AddUpdateProduct(this);
         OnPropertyChanged(nameof(Min));
       }
     }
@@ -59,6 +62,7 @@ namespace C698_Product_WPF.Data.ViewModels
       set
       {
         max = value;
+        AddUpdateProduct = new AddUpdateProduct(this);
         OnPropertyChanged(nameof(Max));
       }
     }
@@ -92,12 +96,59 @@ namespace C698_Product_WPF.Data.ViewModels
       set
       {
         windowLabel = value;
-        OnPropertyChanged(nameof(CUDString));
+        OnPropertyChanged(nameof(WindowLabel));
+      }
+    }
+
+    private Part partSelected;
+    public Part PartSelected
+    {
+      get { return partSelected; }
+      set
+      {
+        partSelected = value;
+        AddPartProduct = new AddPartProduct(this);
+        OnPropertyChanged(nameof(PartSelected));
+      }
+    }
+
+    private PartProductDTO partProductSelected;
+    public PartProductDTO PartProductSelected
+    {
+      get { return partProductSelected; }
+      set
+      {
+        partProductSelected = value;
+        RemovePartProduct = new RemovePartProduct(this);
+        OnPropertyChanged(nameof(PartProductSelected));
       }
     }
 
     public Visibility AddUpdateThis => (CUD == CUD.Add || CUD == CUD.Modify) ? Visibility.Visible : Visibility.Hidden;
     public Visibility DeleteThis => (CUD == CUD.Delete) ? Visibility.Visible : Visibility.Hidden;
+
+    private int? search;
+    public int? Search
+    {
+      get { return search; }
+      set
+      {
+        search = value;
+        SearchParts = new SearchParts(this);
+        OnPropertyChanged(nameof(Search));
+      }
+    }
+
+    private SearchParts searchParts;
+    public SearchParts SearchParts
+    {
+      get { return searchParts; }
+      set
+      {
+        searchParts = value;
+        OnPropertyChanged(nameof(SearchParts));
+      }
+    }
 
     private AddPartProduct addPartProduct;
     public AddPartProduct AddPartProduct
@@ -167,7 +218,7 @@ namespace C698_Product_WPF.Data.ViewModels
     }
 
     public ObservableCollection<PartProductDTO> PartProducts { get; set; }
-    public List<Part> Parts { get; set; }
+    public ObservableCollection<Part> Parts { get; set; }
 
     public ProductVM() { }
 
@@ -175,18 +226,21 @@ namespace C698_Product_WPF.Data.ViewModels
     {
       _supervisor = supervisor;
       CUD = cud;
+      SearchParts = new SearchParts(this);
       AddUpdateProduct = new AddUpdateProduct(this);
       DeleteProduct = new DeleteProduct(this);
       CloseProduct = new CloseProduct(this);
       AddPartProduct = new AddPartProduct(this);
       RemovePartProduct = new RemovePartProduct(this);
       PartProducts = new ObservableCollection<PartProductDTO>();
-      Parts = new List<Part>();
+      Parts = new ObservableCollection<Part>();
       _supervisor.GetAllParts().ContinueWith(t =>
       {
         if (t.Exception == null)
         {
-          Parts = t.Result;
+          List<Part> PartList = t.Result;
+          foreach (Part part in PartList)
+            Parts.Add(part);
         }
       });
     }
@@ -220,6 +274,18 @@ namespace C698_Product_WPF.Data.ViewModels
             PartProducts.Add(new PartProductDTO(part, CUD));
         }
       });
+    }
+
+    public async Task SearchPart()
+    {
+      List<Part> PartList = await _supervisor.GetAllParts();
+      Parts.Clear();
+
+      if (Search != null)
+        PartList = PartList.Where(x => x.Id == Search.Value).ToList();  
+
+      foreach (Part part in PartList)
+        Parts.Add(part);
     }
 
     public void AddPart(Part part)

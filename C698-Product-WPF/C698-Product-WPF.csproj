@@ -11,5 +11,17 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.6" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.6" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\Dialogs\ProductDialog.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Views\Dialogs\ProductDialog.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
   
 </Project>

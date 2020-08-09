@@ -110,19 +110,51 @@ namespace C698_Product_WPF
       }
     }
 
-    private void Products_Add_Click(object s, RoutedEventArgs e)
+    private async void Products_Add_Click(object s, RoutedEventArgs e)
     {
-
+      ProductDialog dialog = new ProductDialog();
+      ProductVM vm = new ProductVM(_productSupervisor, CUD.Add);
+      vm.CloseAction = new Action(() => dialog.Close());
+      dialog.MainGrid.DataContext = vm;
+      bool? result = dialog.ShowDialog();
+      if (dialog.DialogResult.HasValue && dialog.DialogResult.Value)
+      {
+        await GetData();
+      }
     }
 
-    private void Products_Modify_Click(object s, RoutedEventArgs e)
+    private async void Products_Modify_Click(object s, RoutedEventArgs e)
     {
-
+      ProductDTO selected = (ProductDTO)ProductsGrid.SelectedItem;
+      if (selected != null && selected != default(ProductDTO))
+      {
+        ProductDialog dialog = new ProductDialog();
+        ProductVM vm = ProductVM.LoadVM(_productSupervisor, selected.Id.Value, CUD.Modify);
+        vm.CloseAction = new Action(() => dialog.Close());
+        dialog.MainGrid.DataContext = vm;
+        bool? result = dialog.ShowDialog();
+        if (dialog.DialogResult.HasValue && dialog.DialogResult.Value)
+        {
+          await GetData();
+        }
+      }
     }
 
-    private void Products_Delete_Click(object s, RoutedEventArgs e)
+    private async void Products_Delete_Click(object s, RoutedEventArgs e)
     {
-
+      ProductDTO selected = (ProductDTO)ProductsGrid.SelectedItem;
+      if (selected != null && selected != default(ProductDTO))
+      {
+        ProductDialog dialog = new ProductDialog();
+        ProductVM vm = ProductVM.LoadVM(_productSupervisor, selected.Id.Value, CUD.Delete);
+        vm.CloseAction = new Action(() => dialog.Close());
+        dialog.MainGrid.DataContext = vm;
+        bool? result = dialog.ShowDialog();
+        if (dialog.DialogResult.HasValue && dialog.DialogResult.Value)
+        {
+          await GetData();
+        }
+      }
     }
 
     private void Exit_Click(object s, RoutedEventArgs e)

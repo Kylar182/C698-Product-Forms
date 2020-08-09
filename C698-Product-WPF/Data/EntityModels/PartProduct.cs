@@ -22,15 +22,16 @@ namespace C698_Product_WPF.Data.EntityModels
 
     public PartProduct() { }
 
-    public PartProduct(PartProductDTO dto, int productId)
+    public PartProduct(PartProductDTO dto, int? productId)
     {
       if (dto.CUD != CUD.Add)
       {
-        Id = dto.Id.Value;
-        ProductId = productId;
+        if (dto.Id != null && dto.Id != 0)
+          Id = dto.Id.Value;
+        ProductId = productId.Value;
       }
 
-      PartId = dto.Id.Value;
+      PartId = dto.PartId;
     }
   }
 }

@@ -14,7 +14,11 @@ namespace C698_Product_WPF.Data.DTOs
     public int Min { get; set; }
     public int Max { get; set; }
 
+    public int? ProductId { get; set; }
+    public int PartId { get; set; }
+
     public CUD CUD { get; set; }
+
 
     public PartProductDTO() { }
 
@@ -26,6 +30,7 @@ namespace C698_Product_WPF.Data.DTOs
       Min = part.Min;
       Max = part.Max;
       CUD = cud;
+      PartId = part.Id;
     }
 
     public PartProductDTO(PartProduct part, CUD cud)
@@ -37,6 +42,8 @@ namespace C698_Product_WPF.Data.DTOs
       Min = part.Part.Min;
       Max = part.Part.Max;
       CUD = cud;
+      PartId = part.PartId;
+      ProductId = part.ProductId;
     }
   }
 }

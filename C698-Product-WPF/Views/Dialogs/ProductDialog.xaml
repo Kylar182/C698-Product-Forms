@@ -1,0 +1,200 @@
+﻿<Window x:Class="C698_Product_WPF.Views.Dialogs.ProductDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:C698_Product_WPF.Views.Dialogs"
+        xmlns:vm="clr-namespace:C698_Product_WPF.Data.ViewModels"
+        mc:Ignorable="d"
+        Title="Part" Height="900" Width="1600">
+
+  <Window.Resources>
+    <vm:ProductVM x:Key="vm" />
+  </Window.Resources>
+
+  <Grid x:Name="MainGrid" DataContext="{StaticResource vm}">
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width=".25*" />
+      <ColumnDefinition Width=".25*" />
+      <ColumnDefinition Width=".5*" />
+      <ColumnDefinition Width=".5*" />
+      <ColumnDefinition Width=".5*" />
+      <ColumnDefinition Width="1.25*" />
+      <ColumnDefinition Width=".625*" />
+      <ColumnDefinition Width=".625*" />
+      <ColumnDefinition Width=".5*" />
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="1*" />
+      <RowDefinition Height=".625*" />
+      <RowDefinition Height="1.25*" />
+      <RowDefinition Height=".75*" />
+      <RowDefinition Height=".375*" />
+      <RowDefinition Height=".375*" />
+      <RowDefinition Height=".75*" />
+      <RowDefinition Height=".375*" />
+      <RowDefinition Height=".375*" />
+      <RowDefinition Height=".75*" />
+      <RowDefinition Height="1.5*" />
+      <RowDefinition Height=".625*" />
+      <RowDefinition Height="1*" />
+    </Grid.RowDefinitions>
+
+    <Label Content="{Binding WindowLabel}" HorizontalAlignment="Center" VerticalAlignment="Center"
+           FontSize="20" FontWeight="SemiBold" Grid.ColumnSpan="2"/>
+
+    <Button Grid.Column="5" Content="Search" VerticalAlignment="Bottom" Command="{Binding SearchParts}"
+            HorizontalAlignment="Right" Padding="5, 2.5">
+
+      <Button.Resources>
+        <Style TargetType="Border">
+          <Setter Property="CornerRadius" Value="5"/>
+        </Style>
+      </Button.Resources>
+    </Button>
+
+    <TextBox Grid.Column="6" Grid.ColumnSpan="2" FontSize="24" VerticalAlignment="Bottom"
+             Text="{Binding Search, UpdateSourceTrigger=PropertyChanged, TargetNullValue=''}" />
+
+    <Label Grid.Row="1" Grid.Column="5" Grid.ColumnSpan="2" Content="All candidate Parts" 
+           HorizontalAlignment="Left" VerticalAlignment="Top"
+           FontSize="18" FontWeight="SemiBold"/>
+
+    <Grid Grid.Row="1" Grid.RowSpan="4" Grid.Column="5" Grid.ColumnSpan="3" Margin="0, 35, 0, 0">
+      <DataGrid AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single" 
+                ItemsSource="{Binding Parts}" SelectedItem="{Binding PartSelected, Mode=TwoWay}">
+        
+        <DataGrid.Columns>
+          <DataGridTextColumn Header="Part ID" Width=".85*" Binding="{Binding Id}" />
+          <DataGridTextColumn Header="Name" Width="1.25*" Binding="{Binding Name}" />
+          <DataGridTextColumn Header="Inventory" Width=".85*" Binding="{Binding InStock}" />
+          <DataGridTextColumn Header="Price" Width="*" Binding="{Binding Price}" />
+          <DataGridTextColumn Header="Min" Width=".75*" Binding="{Binding Min}" />
+          <DataGridTextColumn Header="Max" Width=".75*" Binding="{Binding Max}" />
+        </DataGrid.Columns>
+
+        <DataGrid.Resources>
+          <Style TargetType="DataGridColumnHeader">
+            <Setter Property="FontSize" Value="16" />
+          </Style>
+          <Style TargetType="DataGridCell">
+            <Setter Property="FontSize" Value="16" />
+          </Style>
+        </DataGrid.Resources>
+      </DataGrid>
+    </Grid>
+
+    <Label Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Left" Content="ID" />
+
+    <TextBox Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="3" InputScope="Number" IsReadOnly="True" 
+             Text="{Binding Id, Mode=TwoWay}" />
+
+    <Label Grid.Column="1" Grid.Row="4" Grid.RowSpan="2" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Name" />
+
+    <TextBox Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="4" Grid.RowSpan="2" Text="{Binding Name, Mode=TwoWay}"
+             IsReadOnly="{Binding Deleting}" />
+
+    <Button Grid.Column="7" Grid.Row="5" Grid.RowSpan="2" Content="Add" VerticalAlignment="Center" Padding="7.5, 5"
+            HorizontalAlignment="Center" Command="{Binding AddPartProduct}">
+
+      <Button.Resources>
+        <Style TargetType="Border">
+          <Setter Property="CornerRadius" Value="5"/>
+        </Style>
+      </Button.Resources>
+    </Button>
+
+    <Label Grid.Column="1" Grid.Row="6" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Inventory" />
+
+    <TextBox Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="6" InputScope="Number"
+             Text="{Binding InStock, Mode=TwoWay}" IsReadOnly="{Binding Deleting}" />
+
+    <Label Grid.Column="1" Grid.Row="7" Grid.RowSpan="2" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Price" />
+
+    <TextBox Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="7" Grid.RowSpan="2" InputScope="Number"
+             Text="{Binding Price, Mode=TwoWay}" IsReadOnly="{Binding Deleting}" />
+
+    <Label Grid.Row="7" Grid.Column="5" Grid.ColumnSpan="2" Content="All candidate Parts" 
+           HorizontalAlignment="Left" VerticalAlignment="Top"
+           FontSize="18" FontWeight="SemiBold"/>
+
+    <Grid Grid.Row="7" Grid.RowSpan="4" Grid.Column="5" Grid.ColumnSpan="3" Margin="0, 35, 0, 0">
+      <DataGrid AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single" 
+                ItemsSource="{Binding PartProducts}" x:Name="PartProductsGrid" 
+                SelectedItem="{Binding PartProductSelected, Mode=TwoWay}">
+
+        <DataGrid.Columns>
+          <DataGridTextColumn Header="Part ID" Width=".85*" Binding="{Binding PartId}" />
+          <DataGridTextColumn Header="Name" Width="1.25*" Binding="{Binding Name}" />
+          <DataGridTextColumn Header="Inventory" Width=".85*" Binding="{Binding InStock}" />
+          <DataGridTextColumn Header="Price" Width="*" Binding="{Binding Price}" />
+          <DataGridTextColumn Header="Min" Width=".75*" Binding="{Binding Min}" />
+          <DataGridTextColumn Header="Max" Width=".75*" Binding="{Binding Max}" />
+        </DataGrid.Columns>
+
+        <DataGrid.Resources>
+          <Style TargetType="DataGridColumnHeader">
+            <Setter Property="FontSize" Value="16" />
+          </Style>
+          <Style TargetType="DataGridCell">
+            <Setter Property="FontSize" Value="16" />
+          </Style>
+        </DataGrid.Resources>
+      </DataGrid>
+    </Grid>
+
+    <Label Grid.Column="1" Grid.Row="9" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Max" />
+
+    <TextBox Grid.Column="2" Grid.Row="9" InputScope="Number" Text="{Binding Max, Mode=TwoWay}" 
+             IsReadOnly="{Binding Deleting}" />
+
+    <Label Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="9" VerticalAlignment="Center" 
+           HorizontalAlignment="Center" Content="Min" />
+
+    <TextBox Grid.Column="3" Grid.Row="9" InputScope="Number" Text="{Binding Min, Mode=TwoWay}"
+             IsReadOnly="{Binding Deleting}" />
+
+    <Button Grid.Column="7" Grid.Row="11" Content="Delete" VerticalAlignment="Bottom" Padding="5"
+            HorizontalAlignment="Center" Command="{Binding RemovePartProduct}" >
+
+      <Button.Resources>
+        <Style TargetType="Border">
+          <Setter Property="CornerRadius" Value="5"/>
+        </Style>
+      </Button.Resources>
+    </Button>
+
+    <Button Grid.Column="6" Grid.Row="12" Content="{Binding CUDString}" Command="{Binding AddUpdateProduct}"
+            VerticalAlignment="Center" HorizontalAlignment="Right" Padding="5"
+            Visibility="{Binding AddUpdateThis}" Click="Dialog_True">
+
+      <Button.Resources>
+        <Style TargetType="Border">
+          <Setter Property="CornerRadius" Value="5"/>
+        </Style>
+      </Button.Resources>
+    </Button>
+
+    <Button Grid.Column="6" Grid.Row="12" Content="{Binding CUDString}" VerticalAlignment="Center"
+            HorizontalAlignment="Right" Command="{Binding DeleteProduct}" Padding="5"
+            Visibility="{Binding DeleteThis}" Click="Dialog_True">
+      
+      <Button.Resources>
+        <Style TargetType="Border">
+          <Setter Property="CornerRadius" Value="5"/>
+        </Style>
+      </Button.Resources>
+    </Button>
+
+    <Button Grid.Column="7" Grid.Row="12" Content="Cancel" VerticalAlignment="Center" Padding="5"
+            HorizontalAlignment="Center" Command="{Binding CloseProduct}" Click="Dialog_False">
+
+      <Button.Resources>
+        <Style TargetType="Border">
+          <Setter Property="CornerRadius" Value="5"/>
+        </Style>
+      </Button.Resources>
+    </Button>
+
+  </Grid>
+</Window>

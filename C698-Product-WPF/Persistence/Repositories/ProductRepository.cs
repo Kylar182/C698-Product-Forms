@@ -31,15 +31,16 @@ namespace C698_Product_WPF.Persistence.Repositories
 
     public async Task<Product> AddItem(Product product)
     {
+      List<PartProduct> Parts = product.Parts;
+      product.Parts = new List<PartProduct>();
       _context.Products.Add(product);
 
       await _context.SaveChangesAsync();
 
-      foreach (PartProduct part in product.Parts)
-      {
+      foreach (PartProduct part in Parts)
         part.ProductId = product.Id;
-        _context.PartProducts.Add(part);
-      }
+
+      _context.PartProducts.AddRange(Parts);
 
       await _context.SaveChangesAsync();
 

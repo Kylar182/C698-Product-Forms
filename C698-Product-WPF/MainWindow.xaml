@@ -56,9 +56,6 @@
         <DataGridTextColumn Header="Price" Width="*" Binding="{Binding Price}" />
         <DataGridTextColumn Header="Min" Width=".75*" Binding="{Binding Min}" />
         <DataGridTextColumn Header="Max" Width=".75*" Binding="{Binding Max}" />
-        <DataGridTextColumn Header="Source" Visibility="Hidden" Binding="{Binding Source}" />
-        <DataGridTextColumn Header="Source" Visibility="Hidden" Binding="{Binding MachineId}" />
-        <DataGridTextColumn Header="Source" Visibility="Hidden" Binding="{Binding CompanyName}" />
       </DataGrid.Columns>
     </DataGrid>
 

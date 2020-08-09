@@ -31,8 +31,9 @@ namespace C698_Product_WPF.Data.EntityModels
       InStock = product.InStock;
       Min = product.Min;
       Max = product.Max;
+      Parts = new List<PartProduct>();
       foreach (PartProductDTO dto in product.PartProducts.ToList())
-        Parts.Add(new PartProduct(dto, Id));
+        Parts.Add(new PartProduct(dto, product.Id));
     }
   }
 }

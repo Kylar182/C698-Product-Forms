@@ -36,6 +36,7 @@ namespace C698_Product_WPF.Data.ViewModels
       set
       {
         inStock = value;
+        AddUpdatePart = new AddUpdatePart(this);
         OnPropertyChanged(nameof(InStock));
       }
     }
@@ -47,6 +48,7 @@ namespace C698_Product_WPF.Data.ViewModels
       set
       {
         min = value;
+        AddUpdatePart = new AddUpdatePart(this);
         OnPropertyChanged(nameof(Min));
       }
     }
@@ -58,6 +60,7 @@ namespace C698_Product_WPF.Data.ViewModels
       set
       {
         max = value;
+        AddUpdatePart = new AddUpdatePart(this);
         OnPropertyChanged(nameof(Max));
       }
     }

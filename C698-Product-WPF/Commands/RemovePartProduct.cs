@@ -18,13 +18,15 @@ namespace C698_Product_WPF.Commands
 
     public bool CanExecute(object parameter)
     {
-      return true;
+      if (Product.PartProductSelected != null
+        && Product.PartProductSelected != default(PartProductDTO))
+        return true;
+      return false;
     }
 
     public void Execute(object parameter)
     {
-      PartProductDTO part = (PartProductDTO)parameter;
-      Product.RemovePart(part);
+      Product.RemovePart(Product.PartProductSelected);
     }
   }
 }

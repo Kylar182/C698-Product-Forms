@@ -18,13 +18,14 @@ namespace C698_Product_WPF.Commands
 
     public bool CanExecute(object parameter)
     {
-      return true;
+      if (Product.PartSelected != null && Product.PartSelected != default(Part))
+        return true;
+      return false;
     }
 
     public void Execute(object parameter)
     {
-      Part part = (Part)parameter;
-      Product.AddPart(part);
+      Product.AddPart(Product.PartSelected);
     }
   }
 }
