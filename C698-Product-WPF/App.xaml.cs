@@ -14,7 +14,7 @@ namespace C698_Product_WPF
   /// </summary>
   public partial class App : Application
   {
-    private ServiceProvider provider;
+    private readonly ServiceProvider provider;
 
     protected override void OnStartup(StartupEventArgs e)
     {
@@ -31,7 +31,7 @@ namespace C698_Product_WPF
       });
 
       services.AddSingleton<MainWindow>();
-      services.AddScoped<Persistence.Repositories.Interfaces.IPartRepository, PartRepository>();
+      services.AddScoped<IPartRepository, PartRepository>();
       services.AddScoped<IProductRepository, ProductRepository>();
       services.AddScoped<IPartSupervisor, PartSupervisor>();
       services.AddScoped<IProductSupervisor, ProductSupervisor>();

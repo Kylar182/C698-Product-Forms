@@ -27,9 +27,17 @@ namespace C698_Product_WPF.Persistence.Repositories.Interfaces
     /// </summary>
     Task<Inhouse> AddItem(Inhouse part);
     /// <summary>
+    /// Add Part to DB
+    /// </summary>
+    Task<Outsourced> AddItem(Outsourced part);
+    /// <summary>
     /// Update Part in DB
     /// </summary>
     Task<Inhouse> UpdateItem(Inhouse part);
+    /// <summary>
+    /// Delete Part from DB by Id
+    /// </summary>
+    Task<Outsourced> UpdateItem(Outsourced part);
     /// <summary>
     /// Delete Part from DB by Id
     /// </summary>

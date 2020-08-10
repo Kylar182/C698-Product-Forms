@@ -1,4 +1,5 @@
-﻿using C698_Product_WPF.Data.EntityModels.Types;
+﻿using C698_Product_WPF.Data.DTOs;
+using C698_Product_WPF.Data.EntityModels.Types;
 using C698_Product_WPF.Data.ViewModels;
 
 namespace C698_Product_WPF.Data.EntityModels
@@ -9,9 +10,9 @@ namespace C698_Product_WPF.Data.EntityModels
 
     public Outsourced() { }
 
-    public Outsourced(PartVM part)
+    public Outsourced(PartDTO part, CUD cud)
     {
-      if (part.CUD != CUD.Add)
+      if (cud != CUD.Add)
         Id = part.Id.Value;
 
       Name = part.Name;

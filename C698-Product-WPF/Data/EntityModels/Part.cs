@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace C698_Product_WPF.Data.EntityModels
@@ -16,7 +15,5 @@ namespace C698_Product_WPF.Data.EntityModels
     public int InStock { get; set; }
     public int Min { get; set; }
     public int Max { get; set; }
-
-    public List<PartProduct> Products { get; set; }
   }
 }
