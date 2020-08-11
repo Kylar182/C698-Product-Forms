@@ -306,8 +306,7 @@ namespace C698_Product_WPF.Data.ViewModels
 
     public async Task Update()
     {
-      if (Source == Source.InHouse)
-        await _supervisor.UpdateItem(new PartDTO(this));
+      await _supervisor.UpdateItem(new PartDTO(this));
       Close();
     }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Input;
+using C698_Product_WPF.Data.EntityModels.Types;
 using C698_Product_WPF.Data.ViewModels;
 
 namespace C698_Product_WPF.Commands
@@ -25,7 +26,7 @@ namespace C698_Product_WPF.Commands
 
     public async void Execute(object parameter)
     {
-      if (Part.Id == null)
+      if (Part.CUD == CUD.Add)
         await Part.Add();
       else
         await Part.Update();

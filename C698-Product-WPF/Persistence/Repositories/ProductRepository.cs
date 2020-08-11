@@ -25,7 +25,6 @@ namespace C698_Product_WPF.Persistence.Repositories
     {
       return await _context.Products.Where(q => q.Id == id)
                                       .Include(prop => prop.Parts)
-                                        .ThenInclude(p => p.Part)
                                         .FirstOrDefaultAsync();
     }
 

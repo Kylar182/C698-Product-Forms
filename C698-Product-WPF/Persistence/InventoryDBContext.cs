@@ -34,15 +34,15 @@ namespace C698_Product_WPF.Persistence
       {
         new Product
         {
-          Id = 1, Name = "Red Bicycle", Price = 11.44M, Min = 1, Max = 25
+          Id = 1, Name = "Red Bicycle", InStock = 15, Price = 11.44M, Min = 1, Max = 25
         },
         new Product
         {
-          Id = 2, Name = "Yellow Bicycle", Price = 9.66M, Min = 1, Max = 20
+          Id = 2, Name = "Yellow Bicycle", InStock = 19, Price = 9.66M, Min = 1, Max = 20
         },
         new Product
         {
-          Id = 3, Name = "Blue Bicycle", Price = 12.77M, Min = 1, Max = 25
+          Id = 3, Name = "Blue Bicycle", InStock = 5, Price = 12.77M, Min = 1, Max = 25
         }
       };
     }
