@@ -36,9 +36,9 @@
     <RadioButton Content="In-House" HorizontalAlignment="Left" Grid.Column="1" Margin="-15, 18"
                   Command="{Binding PartSource}" CommandParameter="0" IsChecked="{Binding InHouse}" />
     
-    <RadioButton Content="Outsourced" HorizontalAlignment="Left" Grid.Column="2" Grid.ColumnSpan="2"
+    <RadioButton Content="OutSourced" HorizontalAlignment="Left" Grid.Column="2" Grid.ColumnSpan="2"
                  Margin="0, 18" Command="{Binding PartSource}" CommandParameter="1"
-                 IsChecked="{Binding Outsourced}" />
+                 IsChecked="{Binding OutSourced}" />
 
     <Label Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" Content="ID" />
 

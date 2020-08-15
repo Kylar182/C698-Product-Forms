@@ -35,5 +35,17 @@ namespace C698_Product_WPF.Data.EntityModels
       foreach (PartProductDTO dto in product.PartProducts.ToList())
         Parts.Add(new PartProduct(dto, product.Id));
     }
+
+    private void AddAssociatedPart(Part part) { }
+
+    private bool RemoveAssociatedPart(int id)
+    {
+      return true;
+    }
+
+    private Part LookupAssociatedPart(int id)
+    {
+      return new InHouse();
+    }
   }
 }

@@ -31,9 +31,9 @@ namespace C698_Product_WPF.Data.Supervisors
     {
       List<PartDTO> parts = new List<PartDTO>();
 
-      foreach (Inhouse inHousePart in await _partRepository.GetAllInHouse())
+      foreach (InHouse inHousePart in await _partRepository.GetAllInHouse())
         parts.Add(new PartDTO(inHousePart));
-      foreach (Outsourced outsourcedPart in await _partRepository.GetAllOutsourced())
+      foreach (OutSourced outsourcedPart in await _partRepository.GetAllOutSourced())
         parts.Add(new PartDTO(outsourcedPart));
 
       return parts;

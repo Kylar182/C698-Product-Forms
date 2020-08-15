@@ -17,27 +17,27 @@ namespace C698_Product_WPF.Persistence.Repositories
       _context = context;
     }
 
-    public async Task<List<Inhouse>> GetAllInHouse()
+    public async Task<List<InHouse>> GetAllInHouse()
     {
       return await _context.InHouseParts.ToListAsync();
     }
 
-    public async Task<List<Outsourced>> GetAllOutsourced()
+    public async Task<List<OutSourced>> GetAllOutSourced()
     {
       return await _context.OutSourcedParts.ToListAsync();
     }
 
-    public async Task<Inhouse> GetInhouseById(int id)
+    public async Task<InHouse> GetInHouseById(int id)
     {
       return await _context.InHouseParts.Where(q => q.Id == id).FirstOrDefaultAsync();
     }
 
-    public async Task<Outsourced> GetOutSourcedById(int id)
+    public async Task<OutSourced> GetOutSourcedById(int id)
     {
       return await _context.OutSourcedParts.Where(q => q.Id == id).FirstOrDefaultAsync();
     }
 
-    public async Task<Inhouse> AddItem(Inhouse part)
+    public async Task<InHouse> AddItem(InHouse part)
     {
       part.Id = await GetLatestId();
       _context.Add(part);
@@ -45,7 +45,7 @@ namespace C698_Product_WPF.Persistence.Repositories
       return part;
     }
 
-    public async Task<Outsourced> AddItem(Outsourced part)
+    public async Task<OutSourced> AddItem(OutSourced part)
     {
       part.Id = await GetLatestId();
       _context.Add(part);
@@ -53,9 +53,9 @@ namespace C698_Product_WPF.Persistence.Repositories
       return part;
     }
 
-    public async Task<Inhouse> UpdateItem(Inhouse part)
+    public async Task<InHouse> UpdateItem(InHouse part)
     {
-      Inhouse current = await GetInhouseById(part.Id);
+      InHouse current = await GetInHouseById(part.Id);
 
       if (current != null)
       {
@@ -71,7 +71,8 @@ namespace C698_Product_WPF.Persistence.Repositories
       else
       {
         await Delete(part.Id);
-        current = new Inhouse() {
+        current = new InHouse()
+        {
           Id = part.Id,
           Name = part.Name,
           Price = part.Price,
@@ -86,9 +87,9 @@ namespace C698_Product_WPF.Persistence.Repositories
       return current;
     }
 
-    public async Task<Outsourced> UpdateItem(Outsourced part)
+    public async Task<OutSourced> UpdateItem(OutSourced part)
     {
-      Outsourced current = await GetOutSourcedById(part.Id);
+      OutSourced current = await GetOutSourcedById(part.Id);
 
       if (current != null)
       {
@@ -104,7 +105,7 @@ namespace C698_Product_WPF.Persistence.Repositories
       else
       {
         await Delete(part.Id);
-        current = new Outsourced()
+        current = new OutSourced()
         {
           Id = part.Id,
           Name = part.Name,
@@ -122,7 +123,7 @@ namespace C698_Product_WPF.Persistence.Repositories
 
     public async Task Delete(int id)
     {
-      Inhouse removeInHouse = await GetInhouseById(id);
+      InHouse removeInHouse = await GetInHouseById(id);
       if (removeInHouse != null)
         _context.Remove(removeInHouse);
       else

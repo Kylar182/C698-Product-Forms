@@ -9,35 +9,35 @@ namespace C698_Product_WPF.Persistence.Repositories.Interfaces
     /// <summary>
     /// Get All In House Parts from DB
     /// </summary>
-    Task<List<Inhouse>> GetAllInHouse();
+    Task<List<InHouse>> GetAllInHouse();
     /// <summary>
     /// Get All Out Sourced Parts from DB
     /// </summary>
-    Task<List<Outsourced>> GetAllOutsourced();
+    Task<List<OutSourced>> GetAllOutSourced();
     /// <summary>
     /// Get Part from DB by Id
     /// </summary>
-    Task<Inhouse> GetInhouseById(int id);
+    Task<InHouse> GetInHouseById(int id);
     /// <summary>
     /// Get Part from DB by Id
     /// </summary>
-    Task<Outsourced> GetOutSourcedById(int id);
+    Task<OutSourced> GetOutSourcedById(int id);
     /// <summary>
     /// Add Part to DB
     /// </summary>
-    Task<Inhouse> AddItem(Inhouse part);
+    Task<InHouse> AddItem(InHouse part);
     /// <summary>
     /// Add Part to DB
     /// </summary>
-    Task<Outsourced> AddItem(Outsourced part);
+    Task<OutSourced> AddItem(OutSourced part);
     /// <summary>
     /// Update Part in DB
     /// </summary>
-    Task<Inhouse> UpdateItem(Inhouse part);
+    Task<InHouse> UpdateItem(InHouse part);
     /// <summary>
     /// Delete Part from DB by Id
     /// </summary>
-    Task<Outsourced> UpdateItem(Outsourced part);
+    Task<OutSourced> UpdateItem(OutSourced part);
     /// <summary>
     /// Delete Part from DB by Id
     /// </summary>

@@ -1,5 +1,4 @@
 ﻿using C698_Product_WPF.Data.EntityModels;
-using C698_Product_WPF.Data.EntityModels.Types;
 using Microsoft.EntityFrameworkCore;
 
 namespace C698_Product_WPF.Persistence
@@ -13,17 +12,17 @@ namespace C698_Product_WPF.Persistence
 
     public DbSet<Product> Products { get; set; }
 
-    public DbSet<Inhouse> InHouseParts { get; set; }
+    public DbSet<InHouse> InHouseParts { get; set; }
 
-    public DbSet<Outsourced> OutSourcedParts { get; set; }
+    public DbSet<OutSourced> OutSourcedParts { get; set; }
 
     public DbSet<PartProduct> PartProducts { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
       builder.Entity<Product>().HasData(GetProducts());
-      builder.Entity<Inhouse>().HasData(GetInHouseParts());
-      builder.Entity<Outsourced>().HasData(GetOutsourcedParts());
+      builder.Entity<InHouse>().HasData(GetInHouseParts());
+      builder.Entity<OutSourced>().HasData(GetOutSourcedParts());
       builder.Entity<PartProduct>();
       base.OnModelCreating(builder);
     }
@@ -47,30 +46,30 @@ namespace C698_Product_WPF.Persistence
       };
     }
 
-    private Inhouse[] GetInHouseParts()
+    private InHouse[] GetInHouseParts()
     {
-      return new Inhouse[]
+      return new InHouse[]
       {
-        new Inhouse
+        new InHouse
         {
           Id = 1, Name = "Wheel", InStock = 15, Price = 12.11M, Min = 5, Max = 25, MachineId = 12
         },
-        new Inhouse
+        new InHouse
         {
           Id = 2, Name = "Pedal", InStock = 11, Price = 8.22M, Min = 1, Max = 25, MachineId = 29
-        }        
+        }
       };
     }
 
-    private Outsourced[] GetOutsourcedParts()
+    private OutSourced[] GetOutSourcedParts()
     {
-      return new Outsourced[]
+      return new OutSourced[]
       {
-        new Outsourced
+        new OutSourced
         {
           Id = 3, Name = "Chain", InStock = 12, Price = 8.33M, Min = 5, Max = 25, CompanyName = "Smith Foundry, Inc."
         },
-        new Outsourced
+        new OutSourced
         {
           Id = 4, Name = "Seat", InStock = 8, Price = 4.55M, Min = 2, Max = 15, CompanyName = "Smith Foundry, Inc."
         }

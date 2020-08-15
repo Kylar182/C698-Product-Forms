@@ -23,7 +23,7 @@ namespace C698_Product_WPF.Data.DTOs
 
     public PartDTO() { }
 
-    public PartDTO(Inhouse part)
+    public PartDTO(InHouse part)
     {
       Id = part.Id;
       Name = part.Name;
@@ -36,7 +36,7 @@ namespace C698_Product_WPF.Data.DTOs
       CompanyName = "";
     }
 
-    public PartDTO(Outsourced part)
+    public PartDTO(OutSourced part)
     {
       Id = part.Id;
       Name = part.Name;

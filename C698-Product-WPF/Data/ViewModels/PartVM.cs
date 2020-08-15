@@ -72,7 +72,7 @@ namespace C698_Product_WPF.Data.ViewModels
       {
         source = value;
         InHouse = (source == Source.InHouse);
-        Outsourced = (source == Source.OutSourced);
+        OutSourced = (source == Source.OutSourced);
         InOut = (source == Source.InHouse) ? "Machine ID" : "Company Name";
         MachineIdShow = (source == Source.InHouse) ? Visibility.Visible : Visibility.Hidden;
         CompanyNameShow = (source == Source.OutSourced) ? Visibility.Visible : Visibility.Hidden;
@@ -100,13 +100,13 @@ namespace C698_Product_WPF.Data.ViewModels
       }
     }
     private bool outsourced;
-    public bool Outsourced
+    public bool OutSourced
     {
       get { return outsourced; }
       set
       {
         outsourced = value;
-        OnPropertyChanged(nameof(Outsourced));
+        OnPropertyChanged(nameof(OutSourced));
       }
     }
     private Visibility machineIdShow;

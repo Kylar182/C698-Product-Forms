@@ -3,13 +3,13 @@ using C698_Product_WPF.Data.EntityModels.Types;
 
 namespace C698_Product_WPF.Data.EntityModels
 {
-  public class Inhouse : Part
+  public class InHouse : Part
   {
     public int MachineId { get; set; }
 
-    public Inhouse() { }
+    public InHouse() { }
 
-    public Inhouse(PartDTO part, CUD cud)
+    public InHouse(PartDTO part, CUD cud)
     {
       if (cud != CUD.Add)
         Id = part.Id.Value;

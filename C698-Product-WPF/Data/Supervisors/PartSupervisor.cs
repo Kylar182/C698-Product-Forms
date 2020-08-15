@@ -19,9 +19,9 @@ namespace C698_Product_WPF.Data.Supervisors
     public async Task<List<PartDTO>> GetAll()
     {
       List<PartDTO> vms = new List<PartDTO>();
-      foreach (Inhouse part in await _repository.GetAllInHouse())
+      foreach (InHouse part in await _repository.GetAllInHouse())
         vms.Add(new PartDTO(part));
-      foreach (Outsourced part in await _repository.GetAllOutsourced())
+      foreach (OutSourced part in await _repository.GetAllOutSourced())
         vms.Add(new PartDTO(part));
 
       return vms;
@@ -29,8 +29,8 @@ namespace C698_Product_WPF.Data.Supervisors
 
     public async Task<PartDTO> GetById(int id)
     {
-      Inhouse inhouse = await _repository.GetInhouseById(id);
-      if (inhouse != null && inhouse != default(Inhouse))
+      InHouse inhouse = await _repository.GetInHouseById(id);
+      if (inhouse != null && inhouse != default(InHouse))
         return new PartDTO(inhouse);
 
       return new PartDTO(await _repository.GetOutSourcedById(id));
@@ -39,17 +39,17 @@ namespace C698_Product_WPF.Data.Supervisors
     public async Task<PartDTO> AddItem(PartDTO part)
     {
       if (part.Source == Source.InHouse)
-        return new PartDTO(await _repository.AddItem(new Inhouse(part, CUD.Add)));
+        return new PartDTO(await _repository.AddItem(new InHouse(part, CUD.Add)));
 
-      return new PartDTO(await _repository.AddItem(new Outsourced(part, CUD.Add)));
+      return new PartDTO(await _repository.AddItem(new OutSourced(part, CUD.Add)));
     }
 
     public async Task<PartDTO> UpdateItem(PartDTO part)
     {
       if (part.Source == Source.InHouse)
-        return new PartDTO(await _repository.UpdateItem(new Inhouse(part, CUD.Modify)));
+        return new PartDTO(await _repository.UpdateItem(new InHouse(part, CUD.Modify)));
 
-      return new PartDTO(await _repository.UpdateItem(new Outsourced(part, CUD.Modify)));
+      return new PartDTO(await _repository.UpdateItem(new OutSourced(part, CUD.Modify)));
     }
 
     public async Task Delete(int id)
