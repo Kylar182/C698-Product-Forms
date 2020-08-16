@@ -17,6 +17,7 @@ namespace C698_Product_WPF.Data.Supervisors
     {
       _repository = repository;
     }
+
     public async Task<List<PartDTO>> GetAll()
     {
       List<PartDTO> vms = new List<PartDTO>();

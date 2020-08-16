@@ -36,11 +36,20 @@ namespace C698_Product_WPF.Data.EntityModels
         Parts.Add(new PartProduct(dto, product.Id));
     }
 
-    private void AddAssociatedPart(Part part) { }
+    private void AddAssociatedPart(Part part) 
+    {
+      PartProduct partadd = new PartProduct()
+      {
+        ProductId = Id,
+        PartId = part.Id
+      }
+
+      Parts.Add(partadd);
+    }
 
     private bool RemoveAssociatedPart(int id)
-    {
-      return true;
+    {      
+      return Parts.Remove(id);
     }
 
     private Part LookupAssociatedPart(int id)
