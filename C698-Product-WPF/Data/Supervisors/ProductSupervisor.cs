@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using C698_Product_WPF.Data.DTOs;
 using C698_Product_WPF.Data.EntityModels;
@@ -24,7 +25,7 @@ namespace C698_Product_WPF.Data.Supervisors
       foreach (Product product in await _repository.GetAll())
         vms.Add(new ProductDTO(product));
 
-      return vms;
+      return vms.OrderBy(prop => prop.Id).ToList();
     }
 
     public async Task<List<PartDTO>> GetAllParts()
