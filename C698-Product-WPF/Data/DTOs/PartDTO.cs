@@ -59,7 +59,7 @@ namespace C698_Product_WPF.Data.DTOs
       InStock = part.InStock;
       Min = part.Min;
       Max = part.Max;
-      Source = Source.OutSourced;
+      Source = part.Source;
       MachineId = part.MachineId;
       CompanyName = part.CompanyName;
     }

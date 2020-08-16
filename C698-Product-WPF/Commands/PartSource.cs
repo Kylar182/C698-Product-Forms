@@ -25,14 +25,10 @@ namespace C698_Product_WPF.Commands
 
     public void Execute(object parameter)
     {
-      if (Convert.ToInt32(parameter) == 0)
-      {
+      if ((string)parameter == "0")
         Part.Source = Source.InHouse;
-      }
-      else
-      {
+      else if ((string)parameter == "1")
         Part.Source = Source.OutSourced;
-      }
     }
   }
 }
