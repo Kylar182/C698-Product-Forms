@@ -42,14 +42,14 @@ namespace C698_Product_WPF.Data.EntityModels
       {
         ProductId = Id,
         PartId = part.Id
-      }
+      };
 
       Parts.Add(partadd);
     }
 
     private bool RemoveAssociatedPart(int id)
     {      
-      return Parts.Remove(id);
+      return Parts.Remove(Parts[id]);
     }
 
     private Part LookupAssociatedPart(int id)
